@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <head>
+            <meta charset="UTF-8">
+            <link rel="stylesheet" href="css/styles.css">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet"> 
+            <title>simple-passgen</title>
+        </head>
+        <div id="mainContainer">
+            <h1 id="heading">Simple Password Generator</h1>
+            <div id="contentElements">
+                <div id="piholeContainer">
+                    <h1>Pihole Status</h1>
+                    <p>This is how your Pihole is currently doing.<br> You may go to the admin panel to manage it or access more information.</p>
+                </div>
+                <div id="prefsContainer">
+                    <h1>Password Preferences</h1>
+                    <p>To generate a password, first enter some preferences for generation.</p>
+                </div>
+                <div id="passgenContainer">
+                    <h1>Generator</h1>
+                    <p>This password was generated based on the selections above. Click "Regenerate" if you are not happy with it.</p>
+                </div>
+            </div>
+        </div>
+        <script src="js/main.js"></script>
+        <script src="js/pihole.js"></script>
+    </body>
+</html>

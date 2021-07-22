@@ -1,0 +1,81 @@
+body {
+    background-color: black;
+    padding: 20px;
+    margin: 0;
+}
+
+#mainContainer {
+    border: solid white;
+    border-radius: 10px;
+    max-width: 80em;
+    margin-right: 20px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#contentElements {
+    margin: 0;
+    padding: 0;
+}
+
+#heading {
+    color: white;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    padding: 2px;
+    margin: 2px;
+    text-decoration: underline;
+    text-align: center;
+    font-size: 50px;
+}
+
+#contentElements h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Open Sans', sans-serif;
+    padding: 2px;
+    margin: 2px;
+    text-align: center;
+}
+
+#contentElements p {
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+    padding: 2px;
+    margin: 2px;
+}
+
+#contentElements button {
+    border-radius: 10px;
+    border: solid red;
+    color: black;
+    background-color: white;
+}
+
+#piholeContainer {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: solid white;
+    border-radius: 10px;
+}
+
+#prefsContainer {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: solid white;
+    border-radius: 10px;
+}
+
+#passgenContainer {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: solid white;
+    border-radius: 10px;
+}
