@@ -15,7 +15,7 @@
                     <h1>Pihole</h1>
                     <p>If you want to go directly to the Pihole Admin Panel, click the button below.</p>
                     <div id="piholeButton">
-                        <button onclick="window.location.href='http://pi.hole/admin/'" >Admin Panel</button>
+                        <button id="buttonPihole">Admin Panel</button>
                     </div>
                 </div>
                 <div id="prefsContainer">
@@ -24,22 +24,29 @@
                     <div id="prefBoxes">
                         <div id="prefInputs">
                             <label for="passLength">Password Length: </label>
-                            <input id="passLength" type="number" value=8 min=2 max=99>
+                            <input id="passLength" type="number" value=8 min=4 max=99>
                             <label for="passLength">Characters</label>
                         </div>
                         <div id="prefCheckboxes">
-                            <input type="checkbox" id="includeSpecial" value="yes">
-                            <label for="includeSpecial">Include Special Characters</label><br>
-                            <input type="checkbox" id="includeNumbers" value="yes">
-                            <label for="includeNumbers">Include Numbers</label><br>
-                            <input type="checkbox" id="includeUppercase" value="yes">
-                            <label for="includeUppercase">Include Uppercase Characters</label><br>
+                            <input type="checkbox" id="includeSpecial" checked>
+                            <label for="includeSpecial">Include Special Characters [!?$&@#]</label><br>
+                            <input type="checkbox" id="includeNumbers" checked>
+                            <label for="includeNumbers">Include Numbers [0-9]</label><br>
+                            <input type="checkbox" id="includeUppercase" checked>
+                            <label for="includeUppercase">Include Uppercase Characters [A-Z]</label><br>
+                            <input type="checkbox" id="includeLowercase" checked>
+                            <label for="includeLowercase">Include Lowercase Characters [a-z]</label><br>
                         </div>
                     </div>
                 </div>
                 <div id="passgenContainer">
-                    <h1>Generator</h1>
-                    <p>This password was generated based on the selections above. Click "Regenerate" if you are not happy with it.</p>
+                    <div id="mainOut">
+                        <output id="passOut"></output>
+                    </div>
+                    <div id="genButton">
+                        <button id="buttonGenerate">Generate</button>
+                        <button id="copyButton"><img id="copyImg" src="simplepassgen/img/copy.png"></button>
+                    </div>
                 </div>
             </div>
         </div>

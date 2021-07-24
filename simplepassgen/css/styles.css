@@ -6,6 +6,7 @@ body {
 }
 
 #mainContainer {
+    background-color: #111111;
     border: solid white;
     border-radius: 10px;
     max-width: 80em;
@@ -37,14 +38,14 @@ body {
     margin: 2px;
 }
 
-#contentElements button {
+#buttonPihole {
     border: solid white;
     border-radius: 5px;
     background-color: black;
     color: white;
 }
 
-#contentElements button:hover {
+#buttonPihole:hover {
     border: solid grey;
     background-color: black;
     color: grey;
@@ -55,28 +56,32 @@ body {
 }
 
 #piholeButton button {
-    font-size: 26px;
+    font-size: 24px;
     padding: 4px;
-    margin: 16px;
+    margin: 18px;
 }
 
 #piholeContainer {
+    background-color: #333333;
     display: block;
     margin: 0 auto;
     border: solid white;
     border-radius: 10px;
-    max-width: 38em;
+    max-width: 37em;
 }
 
 #prefsContainer {
+    background-color: #333333;
     display: block;
     margin: 0 auto;
     margin-top: 20px;
     border: solid white;
     border-radius: 10px;
+    max-width: 34em;
 }
 
 #passgenContainer {
+    background-color: #333333;
     display: block;
     margin: 0 auto;
     margin-top: 20px;
@@ -108,9 +113,62 @@ body {
 
 #passLength {
     border: none;
-    background-color: black;
+    background-color: #333333;
     color: white;
     width: 50px;
     font-weight: bold;
     font-size: 20px;
+}
+
+#genButton {
+    text-align: center;
+    margin: 18px;
+}
+
+#buttonGenerate {
+    font-size: 24px;
+    border: solid white;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+#buttonGenerate:hover {
+    border: solid grey;
+    background-color: black;
+    color: grey;
+}
+
+#passOut {
+    color: white;
+}
+
+#mainOut {
+    display: none;
+    margin: 20px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bolder;
+    word-wrap: break-word;
+}
+
+#copyButton {
+    text-align: center;
+    display: none;
+    font-size: 24px;
+    border: solid white;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+#copyButton:hover {
+    border: solid grey;
+    background-color: black;
+    color: grey;
+}
+
+#copyImg {
+    width: 20px;
+    height: 20px;
 }
