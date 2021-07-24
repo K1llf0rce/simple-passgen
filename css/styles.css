@@ -2,6 +2,7 @@ body {
     background-color: black;
     padding: 20px;
     margin: 0;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #mainContainer {
@@ -18,22 +19,10 @@ body {
     padding: 0;
 }
 
-#heading {
-    color: white;
-    font-weight: bold;
-    font-family: 'Open Sans', sans-serif;
-    padding: 2px;
-    margin: 2px;
-    text-decoration: underline;
-    text-align: center;
-    font-size: 50px;
-}
-
 #contentElements h1 {
     color: white;
     font-weight: bold;
     font-size: 30px;
-    font-family: 'Open Sans', sans-serif;
     padding: 2px;
     margin: 2px;
     text-align: center;
@@ -43,25 +32,40 @@ body {
     color: white;
     font-size: 15px;
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
     font-weight: normal;
     padding: 2px;
     margin: 2px;
 }
 
 #contentElements button {
-    border-radius: 10px;
-    border: solid red;
-    color: black;
-    background-color: white;
+    border: solid white;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+#contentElements button:hover {
+    border: solid grey;
+    background-color: black;
+    color: grey;
+}
+
+#piholeButton {
+    text-align: center;
+}
+
+#piholeButton button {
+    font-size: 26px;
+    padding: 4px;
+    margin: 16px;
 }
 
 #piholeContainer {
     display: block;
     margin: 0 auto;
-    margin-top: 20px;
     border: solid white;
     border-radius: 10px;
+    max-width: 38em;
 }
 
 #prefsContainer {
@@ -78,4 +82,35 @@ body {
     margin-top: 20px;
     border: solid white;
     border-radius: 10px;
+}
+
+#prefBoxes {
+    margin: 10px;
+}
+
+#prefBoxes label {
+    color: white;
+}
+
+#prefBoxes input {
+    margin: 5px;
+}
+
+#prefInputs {
+    text-align: center;
+    margin: 10px;
+}
+
+#prefCheckboxes {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#passLength {
+    border: none;
+    background-color: black;
+    color: white;
+    width: 50px;
+    font-weight: bold;
+    font-size: 20px;
 }

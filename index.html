@@ -10,15 +10,32 @@
             <title>simple-passgen</title>
         </head>
         <div id="mainContainer">
-            <h1 id="heading">Simple Password Generator</h1>
             <div id="contentElements">
                 <div id="piholeContainer">
-                    <h1>Pihole Status</h1>
-                    <p>This is how your Pihole is currently doing.<br> You may go to the admin panel to manage it or access more information.</p>
+                    <h1>Pihole</h1>
+                    <p>If you want to go directly to the Pihole Admin Panel, click the button below.</p>
+                    <div id="piholeButton">
+                        <button onclick="window.location.href='http://pi.hole/admin/'" >Admin Panel</button>
+                    </div>
                 </div>
                 <div id="prefsContainer">
                     <h1>Password Preferences</h1>
                     <p>To generate a password, first enter some preferences for generation.</p>
+                    <div id="prefBoxes">
+                        <div id="prefInputs">
+                            <label for="passLength">Password Length: </label>
+                            <input id="passLength" type="number" value=8 min=2 max=99>
+                            <label for="passLength">Characters</label>
+                        </div>
+                        <div id="prefCheckboxes">
+                            <input type="checkbox" id="includeSpecial" value="yes">
+                            <label for="includeSpecial">Include Special Characters</label><br>
+                            <input type="checkbox" id="includeNumbers" value="yes">
+                            <label for="includeNumbers">Include Numbers</label><br>
+                            <input type="checkbox" id="includeUppercase" value="yes">
+                            <label for="includeUppercase">Include Uppercase Characters</label><br>
+                        </div>
+                    </div>
                 </div>
                 <div id="passgenContainer">
                     <h1>Generator</h1>
