@@ -1,20 +1,16 @@
 #!/usr/bin/env bash
 
-#This script installs simple-passgen to your pihole
+#This script updates simple-passgen
 
 #check if run as root
-if [ "$EUID" -ne 0 ]; then 
+if [ "$EUID" -ne 0 ]; then
   echo "This scripts makes modifications in /var/www/"
   echo "Please run it as root!"
   exit
 fi
 
 #Ask for run confimramtion
-echo "This script will add simple-passgen to your pihole!"
-sleep 1
-echo "!WARNING!"
-sleep 1
-echo "All existing index files in /var/www/ will be removed!"
+echo "This script will update simple-passgen!"
 sleep 1
 read -p "Proceed? (Y|n)" answerProceed
 
@@ -31,9 +27,10 @@ else
 fi
 
 #remove all files that start with index
-echo "Removing existing index files..."
+echo "Removing existing simple-passgen files..."
 sleep 1
-rm /var/www/index*.html
+rm /var/www/indexSPG.html
+rm -rf /var/www/simplepassgen/
 echo "done"
 
 #copy files
@@ -45,7 +42,7 @@ cp -r simplepassgen/ /var/www/
 echo "done"
 
 #exit
-echo "simple-passgen was successfully added to your pihole!"
+echo "simple-passgen was successfully updated!"
 exit 0
 
 
