@@ -40,7 +40,7 @@ echo "done"
 clear
 echo "Copying new files..."
 sleep 1
-cp indexSPG.html /var/www/
+cp index.html /var/www/
 cp -r simplepassgen/ /var/www/
 echo "done"
 

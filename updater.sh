@@ -29,7 +29,7 @@ fi
 #remove all files that start with index
 echo "Removing existing simple-passgen files..."
 sleep 1
-rm /var/www/indexSPG.html
+rm /var/www/index.html
 rm -rf /var/www/simplepassgen/
 echo "done"
 
@@ -37,7 +37,7 @@ echo "done"
 clear
 echo "Copying new files..."
 sleep 1
-cp indexSPG.html /var/www/
+cp index.html /var/www/
 cp -r simplepassgen/ /var/www/
 echo "done"
 

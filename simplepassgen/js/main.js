@@ -82,7 +82,7 @@ function generatePass()  {
 
 //pihole button
 buttonPihole.onclick = function() {
-    location.href='http://pi.hole/admin/'
+    location.href='../../../admin/'
 }
 
 //generate button
