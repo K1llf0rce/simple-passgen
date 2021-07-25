@@ -17,3 +17,14 @@ echo "done"
 clear
 read -p "Specify a commit message: " commitMsg
 git commit -m "$commitMsg"
+
+#push
+clear
+echo "Pushing commit..."
+git push
+echo "done"
+
+#exit
+clear
+echo "Exiting..."
+exit 0
