@@ -5,6 +5,7 @@
 #update to newest
 echo "Checking for up to date local repo..."
 git pull
+sleep 2
 echo "done"
 
 #add all
@@ -17,9 +18,9 @@ echo "done"
 clear
 read -p "Specify a commit message: " commitMsg
 git commit -m "$commitMsg"
+sleep 2
 
 #push
-clear
 echo "Pushing commit..."
 git push
 echo "done"
