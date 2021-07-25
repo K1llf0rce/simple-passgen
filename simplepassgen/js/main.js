@@ -6,9 +6,6 @@ Date: 05.06.2021
 //exec in strict mode
 'use strict'
 
-//general variables
-let passFormat;
-
 //checkboxes
 
 let includeSpecial = document.getElementById('includeSpecial');
@@ -33,19 +30,19 @@ const mainPassOut = document.getElementById('passOut');
 //charsets
 
 const charSetNum='1234567890'
-const charSetSpec='!?$&@#'
+const charSetSpec='!?$%&@#[](){}+-'
 const charSetUpper='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const charSetLower='abcdefghijklmnopqrstuvwxyz'
 
 //functions
 
-function generatePass()  {
+function generateCrypticPass()  {
     let rndmNum
     let rndmSpec
     let rndmUpper
     let rndmLower
-    let genPass = '';
-    let password = '';
+    let genPass = "";
+    let password;
     if (includeNumbers.checked == true || includeSpecial.checked == true || includeUpper.checked == true || includeLower.checked == true) {
         while (genPass.length<passLength.value) {
             //generate random numbers
@@ -66,9 +63,9 @@ function generatePass()  {
             if (includeLower.checked == true) {
                 genPass += charSetLower.charAt(rndmLower);
             }
-            password = genPass;
         }
         //change order
+        password = genPass;
         password = password.split('').sort( function() {
             return Math.random()-Math.random()
         }).join('');
@@ -88,7 +85,8 @@ buttonPihole.onclick = function() {
 //generate button
 buttonGenerate.onclick = function() {
     if (passLength.value <= 99) {
-        mainPassOut.innerHTML = generatePass();
+        mainPassOut.innerHTML = generateCrypticPass();
+        document.getElementById('copyButton').style.borderColor = '#ffffff'
     } else {
         document.getElementById("copyButton").style.display = 'none';
         mainPassOut.innerHTML = '99 Characters Max!';
@@ -98,11 +96,17 @@ buttonGenerate.onclick = function() {
 
 //copy button
 buttonCopy.onclick = function() {
-    var range = document.createRange();
-    range.selectNode(document.getElementById('passOut'));
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
+    //create a dummy input
+    let dummy = document.createElement("input");
+    document.body.appendChild(dummy);
+    dummy.setAttribute("id", "dummy_id");
+    //set value of dummy input to generated password
+    document.getElementById("dummy_id").value=mainPassOut.value;
+    //select it
+    dummy.select();
+    //copy it
     document.execCommand("copy");
-    window.getSelection().removeAllRanges();
-    alert('Copied!');
+    document.body.removeChild(dummy);
+    //inform user
+    document.getElementById('copyButton').style.borderColor = '#00ff00'
 }
