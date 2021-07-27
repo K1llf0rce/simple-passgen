@@ -16,16 +16,20 @@ let includeNumbers = document.getElementById('includeNumbers');
 //numerical inputs
 
 let passLength = document.getElementById('passLength');
+let passPhrase = document.getElementById('passPhrase');
 
 //buttons
 
 let buttonPihole = document.getElementById('buttonPihole');
 let buttonGenerate = document.getElementById('buttonGenerate');
+let buttonPassphraseGenerate = document.getElementById('buttonPassphraseGenerate');
 let buttonCopy = document.getElementById('copyButton');
+let buttonPassphraseCopy = document.getElementById('copyPhraseButton');
 
 //outputs
 
 const mainPassOut = document.getElementById('passOut');
+const mainPassphraseOut = document.getElementById('passPhraseOut');
 
 //charsets
 
@@ -77,6 +81,32 @@ function generateCrypticPass()  {
     }
 }
 
+function generatePassphrase(phrase) {
+    document.getElementById("copyPhraseButton").style.display = 'unset';
+    if (condition) {
+        document.getElementById("copyPhraseButton").style.display = 'unset';
+    } else {
+        document.getElementById("copyPhraseButton").style.display = 'none';
+        return "Tick at least one option!"
+    }
+}
+
+function copyToClipboard(element, button) {
+    //create a dummy input
+    let dummy = document.createElement("input");
+    document.body.appendChild(dummy);
+    dummy.setAttribute("id", "dummy_id");
+    //set value of dummy input to generated password
+    document.getElementById("dummy_id").value=element.value;
+    //select it
+    dummy.select();
+    //copy it
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+    //inform user
+    document.getElementById(button).style.borderColor = '#00ff00'
+}
+
 //pihole button
 buttonPihole.onclick = function() {
     location.href='../../../admin/'
@@ -84,29 +114,34 @@ buttonPihole.onclick = function() {
 
 //generate button
 buttonGenerate.onclick = function() {
+    document.getElementById('copyButton').style.borderColor = '#ffffff'
     if (passLength.value <= 99) {
         mainPassOut.innerHTML = generateCrypticPass();
-        document.getElementById('copyButton').style.borderColor = '#ffffff'
     } else {
-        document.getElementById("copyButton").style.display = 'none';
+        document.getElementById('copyButton').style.display = 'none';
         mainPassOut.innerHTML = '99 Characters Max!';
     }
     document.getElementById("mainOut").style.display = 'block';
 }
 
+//generate passphrase
+buttonPassphraseGenerate.onclick = function() {
+    document.getElementById('copyPhraseButton').style.borderColor = '#ffffff'
+    if (passPhrase.length == '') {
+        document.getElementById('copyPhraseButton').style.borderColor = '#ffffff'
+        mainPassphraseOut.innerHTML = generatePassphrase(passPhraseLength);
+    } else {
+        document.getElementById('copyPhraseButton').style.display = 'none';
+        mainPassphraseOut.innerHTML = '99 Characters Max!';
+    }
+    document.getElementById("mainPassphrase").style.display = 'block';
+}
+
 //copy button
 buttonCopy.onclick = function() {
-    //create a dummy input
-    let dummy = document.createElement("input");
-    document.body.appendChild(dummy);
-    dummy.setAttribute("id", "dummy_id");
-    //set value of dummy input to generated password
-    document.getElementById("dummy_id").value=mainPassOut.value;
-    //select it
-    dummy.select();
-    //copy it
-    document.execCommand("copy");
-    document.body.removeChild(dummy);
-    //inform user
-    document.getElementById('copyButton').style.borderColor = '#00ff00'
+    copyToClipboard(mainPassOut, 'copyButton');
+}
+
+buttonPassphraseCopy.onclick = function() {
+    copyToClipboard(mainPassphraseOut, 'copyPhraseButton')
 }

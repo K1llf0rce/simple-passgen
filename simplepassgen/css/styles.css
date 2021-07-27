@@ -9,8 +9,7 @@ body {
     background-color: #111111;
     border: solid white;
     border-radius: 10px;
-    max-width: 80em;
-    margin-right: 20px;
+    max-width: 90em;
     margin: 0 auto;
     padding: 20px;
 }
@@ -40,29 +39,9 @@ body {
     line-height: 1.5;
 }
 
-#buttonPihole {
-    border: solid white;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    transition: 100ms;
-}
-
-#buttonPihole:hover {
-    border: solid grey;
-    background-color: black;
-    color: grey;
-    transition: 100ms;
-}
-
 #piholeButton {
     text-align: center;
-}
-
-#piholeButton button {
-    font-size: 24px;
-    padding: 4px;
-    margin: 18px;
+    margin: 20px;
 }
 
 #piholeContainer {
@@ -77,7 +56,6 @@ body {
     background-color: #333333;
     display: block;
     margin: 0 auto;
-    margin-top: 20px;
     border: solid white;
     border-radius: 10px;
     font-size: 18px;
@@ -90,6 +68,36 @@ body {
     margin-top: 20px;
     border: solid white;
     border-radius: 10px;
+}
+
+#passgenContainer2 {
+    background-color: #333333;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: solid white;
+    border-radius: 10px;
+}
+
+#passPhraseContainer {
+    background-color: #333333;
+    display: block;
+    margin: 0 auto;
+    border: solid white;
+    border-radius: 10px;
+}
+
+#passPhraseContainer {
+    text-align: center;
+    font-size: 18px;
+}
+
+#passPhrase {
+    font-size: 20px;
+    border: solid white;
+    color: white;
+    background-color: black;
+    margin: 20px;
 }
 
 #prefBoxes {
@@ -128,22 +136,6 @@ body {
     margin: 18px;
 }
 
-#buttonGenerate {
-    font-size: 24px;
-    border: solid white;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    transition: 100ms;
-}
-
-#buttonGenerate:hover {
-    border: solid grey;
-    background-color: black;
-    color: grey;
-    transition: 100ms;
-}
-
 #passOut {
     color: white;
 }
@@ -157,8 +149,13 @@ body {
     word-wrap: break-word;
 }
 
-#copyButton {
-    display: none;
+.checkboxResize {
+    margin: 10px;
+    padding: 5px
+}
+
+.buttonStyle {
+    font-size: 24px;
     border: solid white;
     border-radius: 5px;
     background-color: black;
@@ -166,19 +163,36 @@ body {
     transition: 100ms;
 }
 
-#copyButton:hover {
+.buttonStyle:hover {
     border: solid grey;
     background-color: black;
     color: grey;
     transition: 100ms;
 }
 
-#copyBtn {
-    width: 26px;
-    height: 26px;
+#copyButton {
+    display: none;
 }
 
-@media (max-width: 1100px) and (orientation: portrait) {
+#copyPhraseButton {
+    display: none;
+}
+
+#passPhraseOut {
+    display: none;
+}
+
+.placeholder {
+    text-align: center;
+}
+
+.placeholderLine {
+    border: solid white;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+@media (orientation: portrait) {
     #contentElements h1 {
         font-size: 70px;
     }
@@ -199,25 +213,14 @@ body {
         line-height: 2;
         font-size: 65px;
     }
-    #buttonGenerate {
-        font-size: 50px;
-    }
-    #copyBtn {
-        width: 60px;
-        height: 60px;
-    }
-    #piholeButton button {
-        font-size: 50px;
-    }
     #mainContainer {
         border: none;
         padding: 0;
     }
+    .buttonStyle {
+        font-size: 50px;
+    }
     input[type=checkbox] {
         transform: scale(1.5);
-    }
-    .checkboxResize {
-        margin: 10px;
-        padding: 5px
     }
 }

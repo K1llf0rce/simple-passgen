@@ -26,7 +26,16 @@ else
     exit 0
 fi
 
+#get newest files
+echo "Looking for update..."
+git pull
+sleep 1
+clear
+echo "Got newest version!"
+sleep 1
+
 #remove all files that start with index
+clear
 echo "Removing existing simple-passgen files..."
 sleep 1
 rm /var/www/index.html
