@@ -1,6 +1,6 @@
 /*
 Last Author: K1llf0rce
-Date: 05.06.2021
+Date: 09.10.2021
 */
 
 //exec in strict mode
@@ -33,18 +33,19 @@ const mainPassphraseOut = document.getElementById('passPhraseOut');
 
 //charsets
 
-const charSetNum='1234567890'
-const charSetSpec='!?$%&@#[](){}+-'
-const charSetUpper='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-const charSetLower='abcdefghijklmnopqrstuvwxyz'
+const charSetNum='1234567890';
+const charSetSpec='!?$%&@#[](){}+-';
+const charSetPassPhr='!?$%&#[](){}+-';
+const charSetUpper='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const charSetLower='abcdefghijklmnopqrstuvwxyz';
 
 //functions
 
 function generateCrypticPass()  {
-    let rndmNum
-    let rndmSpec
-    let rndmUpper
-    let rndmLower
+    let rndmNum;
+    let rndmSpec;
+    let rndmUpper;
+    let rndmLower;
     let genPass = "";
     let password;
     if (includeNumbers.checked == true || includeSpecial.checked == true || includeUpper.checked == true || includeLower.checked == true) {
@@ -81,15 +82,26 @@ function generateCrypticPass()  {
     }
 }
 
+//generate passphrase
+
 function generatePassphrase(phrase) {
     document.getElementById("copyPhraseButton").style.display = 'unset';
-    if (condition) {
-        document.getElementById("copyPhraseButton").style.display = 'unset';
-    } else {
-        document.getElementById("copyPhraseButton").style.display = 'none';
-        return "Tick at least one option!"
-    }
+    //get the value
+    let userPhrase = phrase.value;
+    //replace spaces with random number between 1-99 and replace normal chars with special chars
+    userPhrase = userPhrase.replace(/\s+/g,'')
+                .replace(/a/gi, '@')
+                .replace(/i/gi, '1')
+                .replace(/o/gi, '0')
+                .replace(/e/gi, '3');
+    //add leading and trailing special char
+    userPhrase = charSetPassPhr.charAt(Math.ceil(charSetPassPhr.length * Math.random()*Math.random())) + 
+    userPhrase + charSetPassPhr.charAt(Math.ceil(charSetPassPhr.length * Math.random()*Math.random()));
+    //return final passphrase
+    return userPhrase;
 }
+
+//copy to clipboard
 
 function copyToClipboard(element, button) {
     //create a dummy input
@@ -100,19 +112,22 @@ function copyToClipboard(element, button) {
     document.getElementById("dummy_id").value=element.value;
     //select it
     dummy.select();
+    dummy.setSelectionRange(0, 99999); /* For mobile devices */
     //copy it
-    document.execCommand("copy");
+    navigator.clipboard.writeText(dummy.value);
     document.body.removeChild(dummy);
     //inform user
-    document.getElementById(button).style.borderColor = '#00ff00'
+    document.getElementById(button).style.borderColor = '#00ff00';
 }
 
 //pihole button
+
 buttonPihole.onclick = function() {
-    location.href='../../../admin/'
+    location.href='/admin/';
 }
 
-//generate button
+//generate cryptic button
+
 buttonGenerate.onclick = function() {
     document.getElementById('copyButton').style.borderColor = '#ffffff'
     if (passLength.value <= 99) {
@@ -125,22 +140,26 @@ buttonGenerate.onclick = function() {
 }
 
 //generate passphrase
+
 buttonPassphraseGenerate.onclick = function() {
     document.getElementById('copyPhraseButton').style.borderColor = '#ffffff'
-    if (passPhrase.length == '') {
+    if (passPhrase.value.length > 0) {
         document.getElementById('copyPhraseButton').style.borderColor = '#ffffff'
-        mainPassphraseOut.innerHTML = generatePassphrase(passPhraseLength);
+        mainPassphraseOut.innerHTML = generatePassphrase(passPhrase);
     } else {
         document.getElementById('copyPhraseButton').style.display = 'none';
-        mainPassphraseOut.innerHTML = '99 Characters Max!';
+        mainPassphraseOut.innerHTML = 'Provide an Input!';
     }
-    document.getElementById("mainPassphrase").style.display = 'block';
+    document.getElementById("secOut").style.display = 'block';
 }
 
-//copy button
+//copy cryptic button
+
 buttonCopy.onclick = function() {
     copyToClipboard(mainPassOut, 'copyButton');
 }
+
+//copy passphrase button
 
 buttonPassphraseCopy.onclick = function() {
     copyToClipboard(mainPassphraseOut, 'copyPhraseButton')

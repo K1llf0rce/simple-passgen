@@ -98,6 +98,7 @@ body {
     color: white;
     background-color: black;
     margin: 20px;
+    min-width: 300px;
 }
 
 #prefBoxes {
@@ -140,7 +141,20 @@ body {
     color: white;
 }
 
+#passPhraseOut {
+    color: white;
+}
+
 #mainOut {
+    display: none;
+    margin: 20px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bolder;
+    word-wrap: break-word;
+}
+
+#secOut {
     display: none;
     margin: 20px;
     text-align: center;
@@ -175,10 +189,6 @@ body {
 }
 
 #copyPhraseButton {
-    display: none;
-}
-
-#passPhraseOut {
     display: none;
 }
 
@@ -222,5 +232,8 @@ body {
     }
     input[type=checkbox] {
         transform: scale(1.5);
+    }
+    #passPhrase {
+        min-width: auto;
     }
 }
