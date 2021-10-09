@@ -104,14 +104,7 @@ function generatePassphrase(phrase) {
 //copy to clipboard
 
 function copyToClipboard(element, button) {
-    //create a dummy input
-    let dummy = document.createElement("input");
-    document.body.appendChild(dummy);
-    dummy.value = element.value;
-    dummy.setSelectionRange(0, 99999); /* For mobile devices */
-    dummy.select();
-    navigator.clipboard.writeText(dummy.value);
-    document.body.removeChild(dummy);
+    navigator.clipboard.writeText(element.value);
     document.getElementById(button).style.borderColor = '#00ff00';
 }
 
