@@ -107,6 +107,7 @@ function copyToClipboard(element, button) {
     let dummy = document.createElement("input");
     document.body.appendChild(dummy);
     dummy.value = element.value;
+    dummy.select();
     navigator.clipboard.writeText(dummy.value);
     document.body.removeChild(dummy);
     document.getElementById(button).style.borderColor = '#00ff00';
