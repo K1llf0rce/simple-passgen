@@ -107,16 +107,11 @@ function copyToClipboard(element, button) {
     //create a dummy input
     let dummy = document.createElement("input");
     document.body.appendChild(dummy);
-    dummy.setAttribute("id", "dummy_id");
-    //set value of dummy input to generated password
-    document.getElementById("dummy_id").value=element.value;
-    //select it
-    dummy.select();
+    dummy.value = element.value;
     dummy.setSelectionRange(0, 99999); /* For mobile devices */
-    //copy it
+    dummy.select();
     navigator.clipboard.writeText(dummy.value);
     document.body.removeChild(dummy);
-    //inform user
     document.getElementById(button).style.borderColor = '#00ff00';
 }
 

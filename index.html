@@ -22,10 +22,11 @@
                 <section id="prefsContainer">
                     <h1>Password Generator</h1>
                     <p>To generate a password, first enter some preferences for generation.</p>
+                    <p>The longer the password, the better! Using a Password-Manager is recommended.</p>
                     <div id="prefBoxes">
                         <div id="prefInputs">
                             <label for="passLength">Password Length: </label>
-                            <input id="passLength" type="number" value=8 min=4 max=99>
+                            <input id="passLength" type="number" value=12 min=4 max=99>
                             <label for="passLength">Characters</label>
                         </div>
                         <div id="prefCheckboxes">
@@ -54,6 +55,8 @@
                 </div>
                 <section id="passPhraseContainer">
                     <h1>Passphrase Generator </h1>
+                    <p>This generator will replace some characters of your phrase, making it <br>
+                        harder to decrypt, but easier to remember than a random cryptic password.</p>
                     <div id="phraseInputSection">
                         <input type="text" placeholder="Input Phrase..." id="passPhrase">
                     </div>
