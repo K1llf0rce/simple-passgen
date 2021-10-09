@@ -155,11 +155,11 @@ buttonPassphraseGenerate.onclick = function() {
 //copy cryptic button
 
 buttonCopy.onclick = function() {
-    copyToClipboard('passOut', 'copyButton');
+    copyToClipboard(mainPassOut, 'copyButton');
 }
 
 //copy passphrase button
 
 buttonPassphraseCopy.onclick = function() {
-    copyToClipboard('passPhraseOut', 'copyPhraseButton')
+    copyToClipboard(mainPassphraseOut, 'copyPhraseButton')
 }
