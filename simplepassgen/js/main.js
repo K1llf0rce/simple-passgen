@@ -104,13 +104,19 @@ function generatePassphrase(phrase) {
 //copy to clipboard
 
 function copyToClipboard(element, button) {
+    //create a dummy input
     let dummy = document.createElement("input");
     document.body.appendChild(dummy);
-    dummy.value = element.value;
+    dummy.setAttribute("id", "dummy_id");
+    //set value of dummy input to generated password
+    document.getElementById("dummy_id").value=element.value;
+    //select it
     dummy.select();
-    navigator.clipboard.writeText(dummy.value);
+    //copy it
+    document.execCommand("copy");
     document.body.removeChild(dummy);
-    document.getElementById(button).style.borderColor = '#00ff00';
+    //inform user
+    document.getElementById(button).style.borderColor = '#00ff00'
 }
 
 //pihole button
@@ -149,11 +155,11 @@ buttonPassphraseGenerate.onclick = function() {
 //copy cryptic button
 
 buttonCopy.onclick = function() {
-    copyToClipboard(mainPassOut, 'copyButton');
+    copyToClipboard('passOut', 'copyButton');
 }
 
 //copy passphrase button
 
 buttonPassphraseCopy.onclick = function() {
-    copyToClipboard(mainPassphraseOut, 'copyPhraseButton')
+    copyToClipboard('passPhraseOut', 'copyPhraseButton')
 }
