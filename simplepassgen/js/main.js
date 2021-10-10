@@ -104,18 +104,18 @@ function generatePassphrase(phrase) {
 //copy to clipboard
 
 function copyToClipboard(element, button) {
-    //create a dummy input
-    let dummy = document.createElement("input");
-    document.body.appendChild(dummy);
-    dummy.setAttribute("id", "dummy_id");
-    //set value of dummy input to generated password
-    document.getElementById("dummy_id").value=element.value;
-    //select it
-    dummy.select();
-    //copy it
-    document.execCommand("copy");
-    document.body.removeChild(dummy);
-    //inform user
+    navigator.clipboard.writeText(element.value).then(function() {
+        console.log('Async: Copying to clipboard was successful!');
+    }, function() {
+        console.error('Async: Could not copy text, using fallback method');
+        let dummy = document.createElement("input");
+        document.body.appendChild(dummy);
+        dummy.setAttribute("id", "dummy_id");
+        document.getElementById("dummy_id").value=element.value;
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+    });
     document.getElementById(button).style.borderColor = '#00ff00'
 }
 
