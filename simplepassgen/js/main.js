@@ -12,6 +12,7 @@ let includeSpecial = document.getElementById('includeSpecial');
 let includeUpper = document.getElementById('includeUppercase');
 let includeLower = document.getElementById('includeLowercase');
 let includeNumbers = document.getElementById('includeNumbers');
+let hidePassword = document.getElementById('hidePassword');
 
 //numerical inputs
 
@@ -30,6 +31,9 @@ let buttonPassphraseCopy = document.getElementById('copyPhraseButton');
 
 const mainPassOut = document.getElementById('passOut');
 const mainPassphraseOut = document.getElementById('passPhraseOut');
+let cryptGenOut;
+let phraseGenOut;
+let cryptShadowPass;
 
 //charsets
 
@@ -56,16 +60,16 @@ function generateCrypticPass()  {
             rndmUpper = Math.ceil(charSetUpper.length * Math.random()*Math.random());
             rndmLower = Math.ceil(charSetLower.length * Math.random()*Math.random());
             //assemble password
-            if (includeNumbers.checked == true) {
+            if (includeNumbers.checked == true && genPass.length<passLength.value) {
                 genPass += charSetNum.charAt(rndmNum);
             }
-            if (includeSpecial.checked == true) {
+            if (includeSpecial.checked == true && genPass.length<passLength.value) {
                 genPass += charSetSpec.charAt(rndmSpec);
             }
-            if (includeUpper.checked == true) {
+            if (includeUpper.checked == true && genPass.length<passLength.value) {
                 genPass += charSetUpper.charAt(rndmUpper);
             }
-            if (includeLower.checked == true) {
+            if (includeLower.checked == true && genPass.length<passLength.value) {
                 genPass += charSetLower.charAt(rndmLower);
             }
         }
@@ -103,15 +107,15 @@ function generatePassphrase(phrase) {
 
 //copy to clipboard
 
-function copyToClipboard(element, button) {
-    navigator.clipboard.writeText(element.value).then(function() {
+function copyToClipboard(val, button) {
+    navigator.clipboard.writeText(val).then(function() {
         console.log('Async: Copying to clipboard was successful!');
     }, function() {
         console.error('Async: Could not copy text, using fallback method');
         let dummy = document.createElement("input");
         document.body.appendChild(dummy);
         dummy.setAttribute("id", "dummy_id");
-        document.getElementById("dummy_id").value=element.value;
+        document.getElementById("dummy_id").value=val;
         dummy.select();
         document.execCommand("copy");
         document.body.removeChild(dummy);
@@ -130,7 +134,16 @@ buttonPihole.onclick = function() {
 buttonGenerate.onclick = function() {
     document.getElementById('copyButton').style.borderColor = '#ffffff'
     if (passLength.value <= 99) {
-        mainPassOut.innerHTML = generateCrypticPass();
+        cryptGenOut = generateCrypticPass();
+        if (hidePassword.checked == true) {
+            cryptShadowPass = "";
+            for (let i=0; i < cryptGenOut.length; i++) {
+                cryptShadowPass += "*";
+            }
+            mainPassOut.innerHTML = cryptShadowPass;
+        } else {
+            mainPassOut.innerHTML = cryptGenOut;
+        }
     } else {
         document.getElementById('copyButton').style.display = 'none';
         mainPassOut.innerHTML = '99 Characters Max!';
@@ -144,7 +157,8 @@ buttonPassphraseGenerate.onclick = function() {
     document.getElementById('copyPhraseButton').style.borderColor = '#ffffff'
     if (passPhrase.value.length > 0) {
         document.getElementById('copyPhraseButton').style.borderColor = '#ffffff'
-        mainPassphraseOut.innerHTML = generatePassphrase(passPhrase);
+        phraseGenOut = generatePassphrase(passPhrase)
+        mainPassphraseOut.innerHTML = phraseGenOut;
     } else {
         document.getElementById('copyPhraseButton').style.display = 'none';
         mainPassphraseOut.innerHTML = 'Provide an Input!';
@@ -152,14 +166,24 @@ buttonPassphraseGenerate.onclick = function() {
     document.getElementById("secOut").style.display = 'block';
 }
 
+// hide password button
+
+hidePassword.onchange = function() {
+    if (hidePassword.checked == true) {
+        mainPassOut.innerHTML = cryptShadowPass;
+    } else {
+        mainPassOut.innerHTML = cryptGenOut;
+    }
+}
+
 //copy cryptic button
 
 buttonCopy.onclick = function() {
-    copyToClipboard(mainPassOut, 'copyButton');
+    copyToClipboard(cryptGenOut, 'copyButton');
 }
 
 //copy passphrase button
 
 buttonPassphraseCopy.onclick = function() {
-    copyToClipboard(mainPassphraseOut, 'copyPhraseButton')
+    copyToClipboard(phraseGenOut, 'copyPhraseButton')
 }

@@ -6,7 +6,7 @@ body {
 }
 
 #mainContainer {
-    background-color: #111111;
+    background-color: #000000;
     border: solid white;
     border-radius: 10px;
     max-width: 90em;
@@ -45,7 +45,7 @@ body {
 }
 
 #piholeContainer {
-    background-color: #333333;
+    background-color: #000000;
     display: block;
     margin: 0 auto;
     border: solid white;
@@ -53,7 +53,7 @@ body {
 }
 
 #prefsContainer {
-    background-color: #333333;
+    background-color: #000000;
     display: block;
     margin: 0 auto;
     border: solid white;
@@ -62,7 +62,7 @@ body {
 }
 
 #passgenContainer {
-    background-color: #333333;
+    background-color: #000000;
     display: block;
     margin: 0 auto;
     margin-top: 20px;
@@ -71,7 +71,7 @@ body {
 }
 
 #passgenContainer2 {
-    background-color: #333333;
+    background-color: #000000;
     display: block;
     margin: 0 auto;
     margin-top: 20px;
@@ -80,7 +80,7 @@ body {
 }
 
 #passPhraseContainer {
-    background-color: #333333;
+    background-color: #000000;
     display: block;
     margin: 0 auto;
     border: solid white;
@@ -125,7 +125,7 @@ body {
 
 #passLength {
     border: none;
-    background-color: #333333;
+    background-color: #000000;
     color: white;
     width: 50px;
     font-weight: bold;
@@ -172,14 +172,14 @@ body {
     font-size: 24px;
     border: solid white;
     border-radius: 5px;
-    background-color: black;
+    background-color: #000000;
     color: white;
     transition: 100ms;
 }
 
 .buttonStyle:hover {
     border: solid grey;
-    background-color: black;
+    background-color: #000000;
     color: grey;
     transition: 100ms;
 }
@@ -202,7 +202,7 @@ body {
     margin-bottom: 40px;
 }
 
-@media (orientation: portrait) {
+@media (pointer:none), (pointer:coarse) {
     #contentElements h1 {
         font-size: 70px;
     }
