@@ -107,7 +107,7 @@ function generatePassphrase(phrase) {
 
 //copy to clipboard
 
-function copyToClipboard(val, button) {
+function copyToClipboard(val) {
     navigator.clipboard.writeText(val).then(function() {
         console.log('Async: Copying to clipboard was successful!');
     }, function() {
@@ -120,7 +120,6 @@ function copyToClipboard(val, button) {
         document.execCommand("copy");
         document.body.removeChild(dummy);
     });
-    document.getElementById(button).style.borderColor = '#00ff00'
 }
 
 //pihole button
@@ -132,7 +131,6 @@ buttonPihole.onclick = function() {
 //generate cryptic button
 
 buttonGenerate.onclick = function() {
-    document.getElementById('copyButton').style.borderColor = '#ffffff'
     if (passLength.value <= 99) {
         cryptGenOut = generateCrypticPass();
         if (hidePassword.checked == true) {
@@ -154,9 +152,7 @@ buttonGenerate.onclick = function() {
 //generate passphrase
 
 buttonPassphraseGenerate.onclick = function() {
-    document.getElementById('copyPhraseButton').style.borderColor = '#ffffff'
     if (passPhrase.value.length > 0) {
-        document.getElementById('copyPhraseButton').style.borderColor = '#ffffff'
         phraseGenOut = generatePassphrase(passPhrase)
         mainPassphraseOut.innerHTML = phraseGenOut;
     } else {
@@ -179,11 +175,11 @@ hidePassword.onchange = function() {
 //copy cryptic button
 
 buttonCopy.onclick = function() {
-    copyToClipboard(cryptGenOut, 'copyButton');
+    copyToClipboard(cryptGenOut);
 }
 
 //copy passphrase button
 
 buttonPassphraseCopy.onclick = function() {
-    copyToClipboard(phraseGenOut, 'copyPhraseButton')
+    copyToClipboard(phraseGenOut)
 }

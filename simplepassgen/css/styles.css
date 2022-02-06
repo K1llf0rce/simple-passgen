@@ -1,187 +1,148 @@
-body {
-    background-color: black;
-    padding: 20px;
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
-}
-
-#mainContainer {
-    background-color: #000000;
-    border: solid white;
-    border-radius: 10px;
-    max-width: 90em;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-#contentElements {
+* {
+    font-family: 'Open Sans', 'Sans serif';
     margin: 0;
     padding: 0;
 }
 
-#contentElements h1 {
-    color: white;
-    font-weight: bold;
-    font-size: 30px;
-    padding: 2px;
-    margin: 2px;
-    line-height: 2;
-    text-align: center;
+html {
+    height: 100%;
 }
 
-#contentElements p {
-    color: white;
-    font-size: 18px;
-    text-align: center;
-    font-weight: normal;
-    padding: 2px;
-    margin: 2px;
-    line-height: 1.5;
+body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-#piholeButton {
-    text-align: center;
-    margin: 20px;
+p,a,h1,h2,h3,label {
+    margin: 0;
+    padding: 0;
 }
 
-#piholeContainer {
-    background-color: #000000;
-    display: block;
+#contentWrapper {
+    width: 100%;
     margin: 0 auto;
-    border: solid white;
-    border-radius: 10px;
+    flex: 1;
+    max-width: 80em;
+}
+
+.mainContainer {
+    background-color: #1f1f1f;
+    margin: 15px;
+    padding: 15px;
+}
+
+.mainContainer p,h1,h2,h3,label {
+    color: white;
+    padding: 5px;
+}
+
+.navbar-custom {
+    background-color: #1f1f1f;
+    border-bottom: solid;
+    border-color: #5f5f5f;
+    border-width: 3px;
+}
+
+.footer-custom {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background-color: #1f1f1f;
+    border-top: solid;
+    border-color: #5f5f5f;
+    border-width: 3px;
+}
+
+.footer-custom p {
+    color: white;
+}
+
+.contentHeading {
+    text-align: center;
+}
+
+.infoBox { 
+    margin: 0 auto;
+    width: 90%;
+    text-align: center;
+}
+
+.buttonBox {
+    margin: 0 auto;
+    width: 90%;
+    text-align: center;
+    padding: 5px;
+}
+
+.inputBox {
+    margin: 0 auto;
+    width: 90%;
+    text-align: center;
+}
+
+.genOutput {
+    margin: 0 auto;
+    width: 90%;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+#prefList {
+    width: fit-content;
+    margin: 0 auto;
+    list-style: none;
+    text-align: center;
+}
+
+#prefList li {
+    margin: 15px;
+    padding-bottom: 5px;
+    border-bottom: solid #5f5f5f;
+}
+
+.remark {
+    font-style: italic;
 }
 
 #prefsContainer {
-    background-color: #000000;
-    display: block;
-    margin: 0 auto;
-    border: solid white;
-    border-radius: 10px;
-    font-size: 18px;
-}
-
-#passgenContainer {
-    background-color: #000000;
-    display: block;
-    margin: 0 auto;
-    margin-top: 20px;
-    border: solid white;
-    border-radius: 10px;
-}
-
-#passgenContainer2 {
-    background-color: #000000;
-    display: block;
-    margin: 0 auto;
-    margin-top: 20px;
-    border: solid white;
-    border-radius: 10px;
-}
-
-#passPhraseContainer {
-    background-color: #000000;
-    display: block;
-    margin: 0 auto;
-    border: solid white;
-    border-radius: 10px;
-}
-
-#passPhraseContainer {
-    text-align: center;
-    font-size: 18px;
+    margin: 15px auto;
+    width: 90%;
 }
 
 #passPhrase {
-    font-size: 20px;
-    border: solid white;
-    color: white;
-    background-color: black;
-    margin: 20px;
+    border: none;
+    border-bottom: solid #5f5f5f;
+    color: #ffffff;
+    background-color: #1f1f1f;
+    padding: 5px;
+    margin: 15px;
     min-width: 300px;
 }
 
-#prefBoxes {
-    margin: 10px;
-}
-
-#prefBoxes label {
-    color: white;
-}
-
-#prefBoxes input {
-    margin: 5px;
-}
-
-#prefInputs {
-    text-align: center;
-    margin: 10px;
-}
-
-#prefCheckboxes {
-    margin: 0 auto;
-    text-align: center;
-}
-
 #passLength {
-    border: none;
-    background-color: #000000;
-    color: white;
-    width: 50px;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-#genButton {
-    text-align: center;
-    margin: 18px;
-}
-
-#passOut {
-    color: white;
-}
-
-#passPhraseOut {
+    border-color: #5f5f5f;
+    border-radius: 5px;
+    background-color: #1f1f1f;
     color: white;
 }
 
 #mainOut {
     display: none;
-    margin: 20px;
-    text-align: center;
-    font-size: 40px;
-    font-weight: bolder;
     word-wrap: break-word;
+    font-size:20px;
 }
 
 #secOut {
     display: none;
-    margin: 20px;
-    text-align: center;
-    font-size: 40px;
-    font-weight: bolder;
     word-wrap: break-word;
-}
-
-.checkboxResize {
-    margin: 10px;
-    padding: 5px
-}
-
-.buttonStyle {
-    font-size: 24px;
-    border: solid white;
-    border-radius: 5px;
-    background-color: #000000;
-    color: white;
-    transition: 100ms;
-}
-
-.buttonStyle:hover {
-    border: solid grey;
-    background-color: #000000;
-    color: grey;
-    transition: 100ms;
+    font-size:20px;
 }
 
 #copyButton {
@@ -192,48 +153,11 @@ body {
     display: none;
 }
 
-.placeholder {
-    text-align: center;
-}
-
-.placeholderLine {
-    border: solid white;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
 @media (pointer:none), (pointer:coarse) {
-    #contentElements h1 {
-        font-size: 70px;
-    }
-    #contentElements p {
-        font-size: 45px;
-        line-height: 2;
+    .checkboxResize {
+        transform: scale(1.25);
     }
     #passLength {
-        line-height: 2;
-        font-size: 50px;
-        width: 90px
-    }
-    #prefsContainer {
-        line-height: 2;
-        font-size: 45px;
-    }
-    #mainOut {
-        line-height: 2;
-        font-size: 65px;
-    }
-    #mainContainer {
-        border: none;
-        padding: 0;
-    }
-    .buttonStyle {
-        font-size: 50px;
-    }
-    input[type=checkbox] {
-        transform: scale(1.5);
-    }
-    #passPhrase {
-        min-width: auto;
+        transform: scale(1.1);
     }
 }

@@ -2,81 +2,107 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="simplepassgen/css/styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet"> 
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="simplepassgen/css/styles.css">
         <link rel="shortcut icon" href="simplepassgen/img/logo.png" type="image/x-icon">
         <link rel="icon" href="simplepassgen/img/logo.png" sizes="32x32" type="image/png">
         <link rel="icon" href="simplepassgen/img/logo.png" sizes="16x16" type="image/png">
         <title>simple-passgen</title>
     </head>
     <body>
-        <div id="mainContainer">
-            <div id="contentElements">
-                <section id="piholeContainer">
-                    <h1>Pihole</h1>
+        <nav class="navbar navbar-custom navbar-dark">
+            <a class="navbar-brand" href="/index.html">
+                <img src="simplepassgen/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                simple-passgen
+            </a>
+        </nav>
+        <div id="contentWrapper">
+            <div class="mainContainer">
+                <h1 class="contentHeading">Pihole</h1>
+                <div class="infoBox">
                     <p>If you want to go directly to the Pihole Admin Panel, click the button below.</p>
-                    <div id="piholeButton">
-                        <button id="buttonPihole" class="buttonStyle">Admin Panel</button>
-                    </div>
-                </section>
-                <div class="placeholder">
-                    <div class="placeholderLine"></div>
                 </div>
-                <section id="prefsContainer">
-                    <h1>Password Generator</h1>
+                <div class="buttonBox">
+                    <button id="buttonPihole" class="btn btn-dark">Admin Panel</button>
+                </div>
+            </div>
+            <div class="mainContainer">
+                <h1 class="contentHeading">Password Generator</h1>
+                <div class="infoBox">
                     <p>To generate a password, first enter some preferences for generation.</p>
                     <p>The longer the password, the better! Using a Password-Manager is recommended.</p>
-                    <div id="prefBoxes">
-                        <div id="prefInputs">
-                            <label for="passLength">Password Length: </label>
-                            <input id="passLength" type="number" value=12 min=4 max=99>
-                            <label for="passLength">Characters</label>
-                        </div>
-                        <div id="prefCheckboxes">
-                            <input type="checkbox" id="includeSpecial" class="checkboxResize" checked>
-                            <label for="includeSpecial">Include Special Characters [!?$&@#[](){}+-]</label><br>
-                            <input type="checkbox" id="includeNumbers" class="checkboxResize" checked>
-                            <label for="includeNumbers">Include Numbers [0-9]</label><br>
-                            <input type="checkbox" id="includeUppercase" class="checkboxResize" checked>
-                            <label for="includeUppercase">Include Uppercase Characters [A-Z]</label><br>
-                            <input type="checkbox" id="includeLowercase" class="checkboxResize" checked>
-                            <label for="includeLowercase">Include Lowercase Characters [a-z]</label><br>
-                            <input type="checkbox" id="hidePassword" class="checkboxResize" checked>
-                            <label for="includeLowercase">Hide Password</label><br>
-                        </div>
-                    </div>
-                </section>
-                <section id="passgenContainer">
-                    <div id="mainOut">
-                        <output id="passOut"></output>
-                    </div>
-                    <div id="genButton">
-                        <button id="buttonGenerate" class="buttonStyle">Generate</button>
-                        <button id="copyButton" class="buttonStyle">Copy</button>
-                    </div>
-                </section>
-                <div class="placeholder">
-                    <div class="placeholderLine"></div>
                 </div>
-                <section id="passPhraseContainer">
-                    <h1>Passphrase Generator </h1>
-                    <p>This generator will replace some characters of your phrase, making it <br>
-                        harder to decrypt, but easier to remember than a random cryptic password.</p>
-                    <div id="phraseInputSection">
-                        <input type="text" placeholder="Input Phrase..." id="passPhrase">
-                    </div>
-                </section>
-                <section id="passgenContainer2">
-                    <div id="secOut">
-                        <output id="passPhraseOut"></output>
-                    </div>
-                    <div id="genButton">
-                        <button id="buttonPassphraseGenerate" class="buttonStyle">Generate</button>
-                        <button id="copyPhraseButton" class="buttonStyle">Copy</button>
-                    </div>
-                </section>
+                <div id="prefsContainer">
+                    <ul id="prefList">
+                        <li>
+                            <select id="passLength">
+                                <option value=4>4</option>
+                                <option value=6>6</option>
+                                <option value=8>8</option>
+                                <option value=12>12</option>
+                                <option value=24 selected="selected">24</option>
+                                <option value=48>48</option>
+                                <option value=64>64</option>
+                                <option value=96>96</option>
+                            </select>
+                            <label for="passLength">Password Length</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="includeSpecial" class="checkboxResize" checked>
+                            <label for="includeSpecial">Include Special <span class="remark">!?$&@#[](){}+-</span></label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="includeNumbers" class="checkboxResize" checked>
+                            <label for="includeNumbers">Include Numbers <span class="remark">0-9</span></label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="includeUppercase" class="checkboxResize" checked>
+                            <label for="includeUppercase">Include Uppercase <span class="remark">A-Z</span></label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="includeLowercase" class="checkboxResize" checked>
+                            <label for="includeLowercase">Include Lowercase <span class="remark">a-z</span></label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="hidePassword" class="checkboxResize" checked>
+                            <label for="hidePassword">Hide Password</label>
+                        </li>
+                    </ul>  
+                </div>
+                <div id="mainOut" class="genOutput">
+                    <p id="passOut"></p>
+                </div>
+                <div class="buttonBox">
+                    <button id="buttonGenerate" class="btn btn-dark">Generate</button>
+                    <button id="copyButton" class="btn btn-dark">Copy</button>
+                </div>
+            </div>
+            <div class="mainContainer">
+                <h1 class="contentHeading">Passphrase Generator </h1>
+                <div class="infoBox">
+                    <p>This generator will replace some characters of your phrase, making it harder to decrypt, but easier to remember than a random cryptic password.</p>
+                </div>
+                <div class="inputBox">
+                    <input type="text" placeholder="Input Phrase..." id="passPhrase">
+                </div>
+                <div id="secOut" class="genOutput">
+                    <p id="passPhraseOut"></p>
+                </div>
+                <div class="buttonBox">
+                    <button id="buttonPassphraseGenerate" class="btn btn-dark">Generate</button>
+                    <button id="copyPhraseButton" class="btn btn-dark">Copy</button>
+                </div>
             </div>
         </div>
         <script src="simplepassgen/js/main.js"></script>
+        <footer class="footer-custom">
+            <p>simple-passgen v2.0.0</p>
+        </footer>
     </body>
 </html>
