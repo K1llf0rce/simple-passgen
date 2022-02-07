@@ -31,7 +31,7 @@ p,a,h1,h2,h3,label {
     width: 100%;
     margin: 0 auto;
     flex: 1;
-    max-width: 80em;
+    max-width: 85em;
 }
 
 .mainContainer {
