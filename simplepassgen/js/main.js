@@ -43,6 +43,7 @@ const mainOut = document.getElementById('mainOut');
 const secOut = document.getElementById('secOut');
 const mainPassOut = document.getElementById('passOut');
 const mainPassphraseOut = document.getElementById('passPhraseOut');
+const passLengthOut = document.getElementById('passLengthDisplay');
 
 // charsets
 
@@ -135,12 +136,14 @@ buttonPihole.onclick = function() {
 }
 
 buttonGenerate.onclick = function() {
-    if (passLength.value <= 99) {
+    if (passLength.value <= 128) {
         cryptGenOut = generateCrypticPass();
         if (hidePassword.checked == true) {
             cryptShadowPass = "";
             for (let i=0; i < cryptGenOut.length; i++) {
-                cryptShadowPass += "*";
+                if (cryptShadowPass.length < 16) {
+                    cryptShadowPass += "*";
+                }
             }
             mainPassOut.innerHTML = cryptShadowPass;
         } else {
@@ -148,7 +151,7 @@ buttonGenerate.onclick = function() {
         }
     } else {
         buttonCopy.style.display = 'none';
-        mainPassOut.innerHTML = '99 Characters Max!';
+        mainPassOut.innerHTML = '128 Characters Max!';
     }
     mainOut.style.display = 'block';
 }
@@ -178,4 +181,12 @@ buttonCopy.onclick = function() {
 
 buttonPassphraseCopy.onclick = function() {
     copyToClipboard(phraseGenOut)
+}
+
+passLength.oninput = function() {
+    passLengthOut.innerHTML = passLength.value;
+}
+
+window.onload = function() {
+    passLengthOut.innerHTML = passLength.value;
 }

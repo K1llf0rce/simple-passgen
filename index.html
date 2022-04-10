@@ -46,17 +46,8 @@ Last Author: K1llf0rce
                 <div id="prefsContainer">
                     <ul id="prefList">
                         <li>
-                            <select id="passLength">
-                                <option value=4>4</option>
-                                <option value=6>6</option>
-                                <option value=8>8</option>
-                                <option value=12>12</option>
-                                <option value=24 selected="selected">24</option>
-                                <option value=48>48</option>
-                                <option value=64>64</option>
-                                <option value=96>96</option>
-                            </select>
-                            <label for="passLength">Password Length</label>
+                            <label id="passLengthDisplay" for="passLength"></label><br>
+                            <input id="passLength" type="range" min="4" max="128" value="24">
                         </li>
                         <li>
                             <input type="checkbox" id="includeSpecial" class="checkboxResize" checked>
@@ -107,7 +98,7 @@ Last Author: K1llf0rce
         </div>
         <script src="simplepassgen/js/main.js"></script>
         <footer class="footer-custom">
-            <p>simple-passgen v2.0.1</p>
+            <p>simple-passgen v2.1.0</p>
         </footer>
     </body>
 </html>
