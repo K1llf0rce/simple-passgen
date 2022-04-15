@@ -10,11 +10,6 @@ Last Author: K1llf0rce
 
 let cryptGenOut;
 let phraseGenOut;
-let cryptShadowPass;
-let rndmNum;
-let rndmSpec;
-let rndmUpper;
-let rndmLower;
 
 // checkboxes
 
@@ -57,19 +52,21 @@ const charSetLower='abcdefghijklmnopqrstuvwxyz';
 // functions
 
 function randomFromCharset(charset) {
-    // generate random chars
     switch (charset) {
         case 'num':
-            rndmNum = Math.ceil(charSetNum.length * Math.random()*Math.random());
+            var rndmNum = Math.ceil(charSetNum.length * Math.random()*Math.random());
             return charSetNum.charAt(rndmNum)
         case 'spec':
-            rndmSpec = Math.ceil(charSetSpec.length * Math.random()*Math.random());
+            var rndmSpec = Math.ceil(charSetSpec.length * Math.random()*Math.random());
             return charSetSpec.charAt(rndmSpec);
+        case 'specPhr':
+            var rndmSpecPhr = Math.ceil(charSetSpecPhr.length * Math.random()*Math.random());
+            return charSetSpecPhr.charAt(rndmSpecPhr);
         case 'up':
-            rndmUpper = Math.ceil(charSetUpper.length * Math.random()*Math.random());
+            var rndmUpper = Math.ceil(charSetUpper.length * Math.random()*Math.random());
             return charSetUpper.charAt(rndmUpper);
         case 'low':
-            rndmLower = Math.ceil(charSetLower.length * Math.random()*Math.random());
+            var rndmLower = Math.ceil(charSetLower.length * Math.random()*Math.random());
             return charSetLower.charAt(rndmLower);
     }
 }
@@ -136,8 +133,7 @@ function generatePassphrase(phrase) {
                 .replace(/o/gi, '0')
                 .replace(/e/gi, '3');
     // add leading and trailing special char
-    userPhrase = charSetSpecPhr.charAt(Math.ceil(charSetSpecPhr.length * Math.random()*Math.random())) + 
-    userPhrase + charSetSpecPhr.charAt(Math.ceil(charSetSpecPhr.length * Math.random()*Math.random()));
+    userPhrase = randomFromCharset('specPhr') + userPhrase + randomFromCharset('specPhr');
     // return final passphrase
     return userPhrase;
 }
@@ -172,19 +168,11 @@ buttonGenerate.onclick = function() {
     if (passLength.value <= 128) {
         cryptGenOut = generateCrypticPass();
         if (hidePassword.checked == true) {
-            cryptShadowPass = "";
-            for (let i=0; i < cryptGenOut.length; i++) {
-                if (cryptShadowPass.length < 16) {
-                    cryptShadowPass += "*";
-                }
-            }
-            mainPassOut.innerHTML = cryptShadowPass;
+            // if we hide password, replace all chars in string with '*'
+            mainPassOut.innerHTML = cryptGenOut.replace(/./g, '*').substring(0,16);
         } else {
             mainPassOut.innerHTML = cryptGenOut;
         }
-    } else {
-        buttonCopy.style.display = 'none';
-        mainPassOut.innerHTML = '128 Characters Max!';
     }
     mainOut.style.display = 'block';
 }
@@ -202,7 +190,7 @@ buttonPassphraseGenerate.onclick = function() {
 
 hidePassword.onchange = function() {
     if (hidePassword.checked == true) {
-        mainPassOut.innerHTML = cryptShadowPass;
+        mainPassOut.innerHTML = cryptGenOut.replace(/./g, '*').substring(0,16);
     } else {
         mainPassOut.innerHTML = cryptGenOut;
     }
