@@ -23,6 +23,7 @@ let includeUpper = document.getElementById('includeUppercase');
 let includeLower = document.getElementById('includeLowercase');
 let includeNumbers = document.getElementById('includeNumbers');
 let hidePassword = document.getElementById('hidePassword');
+let avoidCharRepeat = document.getElementById('avoidCharRepeat');
 
 // numerical inputs
 
@@ -48,42 +49,74 @@ const passLengthOut = document.getElementById('passLengthDisplay');
 // charsets
 
 const charSetNum='1234567890';
-const charSetSpec='!?$%&@#[](){}+-';
-const charSetSpecPhr='!?$%&#[](){}+-';
+const charSetSpec='^*!?$%&@#[](){}+-';
+const charSetSpecPhr='^*!?$%&#[](){}+-';
 const charSetUpper='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const charSetLower='abcdefghijklmnopqrstuvwxyz';
 
 // functions
 
-function generateCrypticPass()  {
-    let genPass = "";
-    let password;
-    if (includeNumbers.checked == true || includeSpecial.checked == true || includeUpper.checked == true || includeLower.checked == true) {
-        while (genPass.length<passLength.value) {
-            // generate random chars
+function randomFromCharset(charset) {
+    // generate random chars
+    switch (charset) {
+        case 'num':
             rndmNum = Math.ceil(charSetNum.length * Math.random()*Math.random());
+            return charSetNum.charAt(rndmNum)
+        case 'spec':
             rndmSpec = Math.ceil(charSetSpec.length * Math.random()*Math.random());
+            return charSetSpec.charAt(rndmSpec);
+        case 'up':
             rndmUpper = Math.ceil(charSetUpper.length * Math.random()*Math.random());
+            return charSetUpper.charAt(rndmUpper);
+        case 'low':
             rndmLower = Math.ceil(charSetLower.length * Math.random()*Math.random());
+            return charSetLower.charAt(rndmLower);
+    }
+}
+
+function generateCrypticPass()  {
+    let password = "";
+    if (includeNumbers.checked == true || includeSpecial.checked == true || includeUpper.checked == true || includeLower.checked == true) {
+        while (password.length<passLength.value) {
             // assemble password
-            if (includeNumbers.checked == true && genPass.length<passLength.value) {
-                genPass += charSetNum.charAt(rndmNum);
-            }
-            if (includeSpecial.checked == true && genPass.length<passLength.value) {
-                genPass += charSetSpec.charAt(rndmSpec);
-            }
-            if (includeUpper.checked == true && genPass.length<passLength.value) {
-                genPass += charSetUpper.charAt(rndmUpper);
-            }
-            if (includeLower.checked == true && genPass.length<passLength.value) {
-                genPass += charSetLower.charAt(rndmLower);
+            if (password.length<passLength.value) {
+                if (includeNumbers.checked) {
+                    password += randomFromCharset('num');
+                }
+                if (includeSpecial.checked) {
+                    password += randomFromCharset('spec');
+                }
+                if (includeUpper.checked) {
+                    password += randomFromCharset('up');
+                }
+                if (includeLower.checked) {
+                    password += randomFromCharset('low');
+                }
             }
         }
-        password = genPass;
         password = password.split('').sort( function() {
-            // another randomization factor
+            // randomize character placement after first assembly
             return Math.random()-Math.random()
         }).join('');
+        // avoid character repetition
+        if (avoidCharRepeat.checked) {
+            for (let i=1; i < password.length; i++) {
+                if ( password[i] == password[i-1] ) {
+                    if (charSetNum.includes(password[i])) {
+                        password = password.substring(0, i) + randomFromCharset('num') + password.substring(i + 1);
+                    }
+                    else if (charSetSpec.includes(password[i])) {
+                        password = password.substring(0, i) + randomFromCharset('spec') + password.substring(i + 1);
+                    }
+                    else if (charSetUpper.includes(password[i])) {
+                        password = password.substring(0, i) + randomFromCharset('up') + password.substring(i + 1);
+                    }
+                    else if (charSetLower.includes(password[i])) {
+                        password = password.substring(0, i) + randomFromCharset('low') + password.substring(i + 1);
+                    }
+                }
+            }
+        }
         buttonCopy.style.display = 'unset';
         return password;
     } else {
