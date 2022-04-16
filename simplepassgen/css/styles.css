@@ -113,7 +113,14 @@ p,a,h1,h2,h3,label {
 }
 
 .remark {
-    font-style: italic;
+    border: solid 1px white;
+    border-radius: 50%;
+    padding: 0px 5px 0px 5px;
+    border-color: #5f5f5f;
+}
+
+.remark:hover {
+    border-color: #8f8f8f;
 }
 
 #prefsContainer {
@@ -133,8 +140,8 @@ p,a,h1,h2,h3,label {
 
 #mainOut {
     display: none;
-    word-wrap: break-word;
     font-size:20px;
+    width: 50%;
 }
 
 #secOut {
@@ -154,8 +161,5 @@ p,a,h1,h2,h3,label {
 @media (pointer:none), (pointer:coarse) {
     .checkboxResize {
         transform: scale(1.25);
-    }
-    #passLength {
-        transform: scale(1.1);
     }
 }

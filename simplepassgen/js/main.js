@@ -6,32 +6,27 @@ Last Author: K1llf0rce
 // exec in strict mode
 'use strict'
 
-// general vars
-
-let cryptGenOut;
-let phraseGenOut;
-
 // checkboxes
 
-let includeSpecial = document.getElementById('includeSpecial');
-let includeUpper = document.getElementById('includeUppercase');
-let includeLower = document.getElementById('includeLowercase');
-let includeNumbers = document.getElementById('includeNumbers');
-let hidePassword = document.getElementById('hidePassword');
-let avoidCharRepeat = document.getElementById('avoidCharRepeat');
+const includeSpecial = document.getElementById('includeSpecial');
+const includeUpper = document.getElementById('includeUppercase');
+const includeLower = document.getElementById('includeLowercase');
+const includeNumbers = document.getElementById('includeNumbers');
+const hidePassword = document.getElementById('hidePassword');
+const avoidCharRepeat = document.getElementById('avoidCharRepeat');
 
 // numerical inputs
 
-let passLength = document.getElementById('passLength');
-let passPhrase = document.getElementById('passPhrase');
+const passLength = document.getElementById('passLength');
+const passPhrase = document.getElementById('passPhrase');
 
 // buttons
 
-let buttonPihole = document.getElementById('buttonPihole');
-let buttonGenerate = document.getElementById('buttonGenerate');
-let buttonPassphraseGenerate = document.getElementById('buttonPassphraseGenerate');
-let buttonCopy = document.getElementById('copyButton');
-let buttonPassphraseCopy = document.getElementById('copyPhraseButton');
+const buttonPihole = document.getElementById('buttonPihole');
+const buttonGenerate = document.getElementById('buttonGenerate');
+const buttonPassphraseGenerate = document.getElementById('buttonPassphraseGenerate');
+const buttonCopy = document.getElementById('copyButton');
+const buttonPassphraseCopy = document.getElementById('copyPhraseButton');
 
 // outputs
 
@@ -44,36 +39,76 @@ const passLengthOut = document.getElementById('passLengthDisplay');
 // charsets
 
 const charSetNum='1234567890';
-const charSetSpec='^*!?$%&@#[](){}+-';
-const charSetSpecPhr='^*!?$%&#[](){}+-';
+const charSetSpec='^*!?$%&@#[](){}+-:,~_./';
+const charSetSpecPhr='!?$%&#';
 const charSetUpper='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const charSetLower='abcdefghijklmnopqrstuvwxyz';
+
+// general vars
+
+let cryptGenOut;
+let phraseGenOut;
 
 // functions
 
 function randomFromCharset(charset) {
+    /* 
+        generate a random number based on how many chars we have in our chosen charset and
+        use that to pick a char and return it
+    */
     switch (charset) {
         case 'num':
-            var rndmNum = Math.ceil(charSetNum.length * Math.random()*Math.random());
+            var rndmNum = Math.ceil(charSetNum.length * Math.random());
             return charSetNum.charAt(rndmNum)
         case 'spec':
-            var rndmSpec = Math.ceil(charSetSpec.length * Math.random()*Math.random());
+            var rndmSpec = Math.ceil(charSetSpec.length * Math.random());
             return charSetSpec.charAt(rndmSpec);
         case 'specPhr':
-            var rndmSpecPhr = Math.ceil(charSetSpecPhr.length * Math.random()*Math.random());
+            var rndmSpecPhr = Math.ceil(charSetSpecPhr.length * Math.random());
             return charSetSpecPhr.charAt(rndmSpecPhr);
         case 'up':
-            var rndmUpper = Math.ceil(charSetUpper.length * Math.random()*Math.random());
+            var rndmUpper = Math.ceil(charSetUpper.length * Math.random());
             return charSetUpper.charAt(rndmUpper);
         case 'low':
-            var rndmLower = Math.ceil(charSetLower.length * Math.random()*Math.random());
+            var rndmLower = Math.ceil(charSetLower.length * Math.random());
             return charSetLower.charAt(rndmLower);
     }
 }
 
+function correctRepeat(string) {
+    /* 
+        we check if the character at current index matches the character of the previous
+        index. If this is the case we generate a new random char from the corresponding
+        charset and check again, just to be sure. 
+    */
+    let i=1;
+    while (i < string.length) {
+        if ( string[i] == string[i-1] ) {
+            if (charSetNum.includes(string[i])) {
+                string = string.substring(0, i) + randomFromCharset('num') + string.substring(i + 1);
+            }
+            else if (charSetSpec.includes(string[i])) {
+                string = string.substring(0, i) + randomFromCharset('spec') + string.substring(i + 1);
+            }
+            else if (charSetUpper.includes(string[i])) {
+                string = string.substring(0, i) + randomFromCharset('up') + string.substring(i + 1);
+            }
+            else if (charSetLower.includes(string[i])) {
+                string = string.substring(0, i) + randomFromCharset('low') + string.substring(i + 1);
+            }
+        } else {
+            i++;
+        }
+    }
+    return string;
+}
+
 function generateCrypticPass()  {
     let password = "";
-    if (includeNumbers.checked == true || includeSpecial.checked == true || includeUpper.checked == true || includeLower.checked == true) {
+    if (includeNumbers.checked == true ||
+        includeSpecial.checked == true ||
+        includeUpper.checked == true ||
+        includeLower.checked == true) {
         while (password.length<passLength.value) {
             // assemble password
             if (password.length<passLength.value) {
@@ -97,22 +132,7 @@ function generateCrypticPass()  {
         }).join('');
         // avoid character repetition
         if (avoidCharRepeat.checked) {
-            for (let i=1; i < password.length; i++) {
-                if ( password[i] == password[i-1] ) {
-                    if (charSetNum.includes(password[i])) {
-                        password = password.substring(0, i) + randomFromCharset('num') + password.substring(i + 1);
-                    }
-                    else if (charSetSpec.includes(password[i])) {
-                        password = password.substring(0, i) + randomFromCharset('spec') + password.substring(i + 1);
-                    }
-                    else if (charSetUpper.includes(password[i])) {
-                        password = password.substring(0, i) + randomFromCharset('up') + password.substring(i + 1);
-                    }
-                    else if (charSetLower.includes(password[i])) {
-                        password = password.substring(0, i) + randomFromCharset('low') + password.substring(i + 1);
-                    }
-                }
-            }
+            password = correctRepeat(password);
         }
         buttonCopy.style.display = 'unset';
         return password;
@@ -157,26 +177,22 @@ function copyToClipboard(val) {
     });
 }
 
-// buttons
+// basic string replacement to make password "*" formatted
+function hidePass(string) { return string.replace(/./g, '*').substring(0,16); }
 
-buttonPihole.onclick = function() {
-    // relocate to admin page
-    location.href='/admin/';
-}
-
+// password generation button
 buttonGenerate.onclick = function() {
-    if (passLength.value <= 128) {
-        cryptGenOut = generateCrypticPass();
-        if (hidePassword.checked == true) {
-            // if we hide password, replace all chars in string with '*'
-            mainPassOut.innerHTML = cryptGenOut.replace(/./g, '*').substring(0,16);
-        } else {
-            mainPassOut.innerHTML = cryptGenOut;
-        }
+    cryptGenOut = generateCrypticPass();
+    if (hidePassword.checked == true) {
+        // if we hide password, replace all chars in string with '*'
+        mainPassOut.innerHTML = hidePass(cryptGenOut);
+    } else {
+        mainPassOut.innerHTML = cryptGenOut;
     }
     mainOut.style.display = 'block';
 }
 
+// passphrase generation button
 buttonPassphraseGenerate.onclick = function() {
     if (passPhrase.value.length > 0) {
         phraseGenOut = generatePassphrase(passPhrase)
@@ -188,26 +204,27 @@ buttonPassphraseGenerate.onclick = function() {
     secOut.style.display = 'block';
 }
 
+// hide password by default, or if user wants
 hidePassword.onchange = function() {
     if (hidePassword.checked == true) {
-        mainPassOut.innerHTML = cryptGenOut.replace(/./g, '*').substring(0,16);
+        mainPassOut.innerHTML = hidePass(cryptGenOut);
     } else {
         mainPassOut.innerHTML = cryptGenOut;
     }
 }
 
-buttonCopy.onclick = function() {
-    copyToClipboard(cryptGenOut);
+// if user toggles repetition avoidance, re-eval current password
+avoidCharRepeat.onchange = function() {
+    if (avoidCharRepeat.checked == true) {
+        mainPassOut.innerHTML = correctRepeat(cryptGenOut);
+    } else {
+        mainPassOut.innerHTML = cryptGenOut;
+    }
 }
 
-buttonPassphraseCopy.onclick = function() {
-    copyToClipboard(phraseGenOut)
-}
-
-passLength.oninput = function() {
-    passLengthOut.innerHTML = passLength.value;
-}
-
-window.onload = function() {
-    passLengthOut.innerHTML = passLength.value;
-}
+// these are just some buttons that do basic things
+buttonCopy.onclick = function() { copyToClipboard(cryptGenOut); }
+buttonPassphraseCopy.onclick = function() { copyToClipboard(phraseGenOut) }
+buttonPihole.onclick = function() { location.href='/admin/'; }
+passLength.oninput = function() { passLengthOut.innerHTML = passLength.value; }
+window.onload = function() { passLengthOut.innerHTML = passLength.value; }
