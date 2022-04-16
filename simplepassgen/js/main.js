@@ -178,7 +178,7 @@ function copyToClipboard(val) {
 }
 
 // basic string replacement to make password "*" formatted
-function hidePass(string) { return string.replace(/./g, '*').substring(0,16); }
+function hidePass(string) { return string.replace(/./g, '*').substring(0,12); }
 
 // password generation button
 buttonGenerate.onclick = function() {
