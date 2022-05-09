@@ -9,6 +9,7 @@ Last Author: K1llf0rce
 // checkboxes
 
 const includeSpecial = document.getElementById('includeSpecial');
+const includeExtSpecial = document.getElementById('includeExtSpecial');
 const includeUpper = document.getElementById('includeUppercase');
 const includeLower = document.getElementById('includeLowercase');
 const includeNumbers = document.getElementById('includeNumbers');
@@ -39,8 +40,8 @@ const passLengthOut = document.getElementById('passLengthDisplay');
 // charsets
 
 const charSetNum='1234567890';
-const charSetSpec='^*!?$%&@#[](){}+-:,~_./';
-const charSetSpecPhr='!?$%&#';
+const charSetSpecBsc='!?$%&#[](){}';
+const charSetSpecExt='!?$%&@#[](){}+-:,~_./^*';
 const charSetUpper='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const charSetLower='abcdefghijklmnopqrstuvwxyz';
 
@@ -61,11 +62,17 @@ function randomFromCharset(charset) {
             var rndmNum = Math.ceil(charSetNum.length * Math.random());
             return charSetNum.charAt(rndmNum)
         case 'spec':
-            var rndmSpec = Math.ceil(charSetSpec.length * Math.random());
-            return charSetSpec.charAt(rndmSpec);
+            var rndmSpec
+            if (includeExtSpecial.checked) {
+                rndmSpec = Math.ceil(charSetSpecExt.length * Math.random());
+                return charSetSpecExt.charAt(rndmSpec);
+            } else {
+                rndmSpec = Math.ceil(charSetSpecBsc.length * Math.random());
+                return charSetSpecBsc.charAt(rndmSpec);
+            }
         case 'specPhr':
-            var rndmSpecPhr = Math.ceil(charSetSpecPhr.length * Math.random());
-            return charSetSpecPhr.charAt(rndmSpecPhr);
+            var rndmSpecPhr = Math.ceil(charSetSpecBsc.length * Math.random());
+            return charSetSpecBsc.charAt(rndmSpecPhr);
         case 'up':
             var rndmUpper = Math.ceil(charSetUpper.length * Math.random());
             return charSetUpper.charAt(rndmUpper);
@@ -87,7 +94,7 @@ function correctRepeat(string) {
             if (charSetNum.includes(string[i])) {
                 string = string.substring(0, i) + randomFromCharset('num') + string.substring(i + 1);
             }
-            else if (charSetSpec.includes(string[i])) {
+            else if (charSetSpecExt.includes(string[i])) {
                 string = string.substring(0, i) + randomFromCharset('spec') + string.substring(i + 1);
             }
             else if (charSetUpper.includes(string[i])) {

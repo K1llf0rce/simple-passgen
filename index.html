@@ -31,7 +31,9 @@ Last Author: K1llf0rce
             <div class="mainContainer">
                 <h1 class="contentHeading">Pihole</h1>
                 <div class="infoBox">
-                    <p>If you want to go directly to the Pihole Admin Panel, click the button below.</p>
+                    <p>
+                        If you want to go to the Pihole Admin Panel, click the Button below.
+                    </p>
                 </div>
                 <div class="buttonBox">
                     <button id="buttonPihole" class="btn btn-dark">Admin Panel</button>
@@ -40,8 +42,9 @@ Last Author: K1llf0rce
             <div class="mainContainer">
                 <h1 class="contentHeading">Password Generator</h1>
                 <div class="infoBox">
-                    <p>To generate a password, first enter some preferences for generation.</p>
-                    <p>The longer the password, the better! Using a Password-Manager is recommended.</p>
+                    <p>
+                        The longer, the better.
+                    </p>
                 </div>
                 <div id="prefsContainer">
                     <ul id="prefList">
@@ -52,29 +55,38 @@ Last Author: K1llf0rce
                         <li>
                             <input type="checkbox" id="includeSpecial" class="checkboxResize" checked>
                             <label for="includeSpecial">Include Special 
-                                <span class="remark" data-toggle="tooltip" data-placement="top" title="/^*!?$%&@#[](){}+-:,~_.">?</span>
+                                <span class="remark" data-toggle="tooltip" data-placement="top" 
+                                title="!?$%&@#[](){}+-:,~_./^*">?</span>
+                            </label><br>
+                            <input type="checkbox" id="includeExtSpecial" class="checkboxResize" checked>
+                            <label for="includeExtSpecial">Extended Special
+                                <span class="remark" data-toggle="tooltip" data-placement="top"
+                                title="Use full Special Character Charset">?</span>
                             </label>
                         </li>
                         <li>
                             <input type="checkbox" id="includeNumbers" class="checkboxResize" checked>
                             <label for="includeNumbers">Include Numbers 
-                                <span class="remark" data-toggle="tooltip" data-placement="top" title="0-9">?</span>
+                                <span class="remark" data-toggle="tooltip" data-placement="top" 
+                                title="0-9">?</span>
                             </label>
                         </li>
                         <li>
                             <input type="checkbox" id="includeUppercase" class="checkboxResize" checked>
                             <label for="includeUppercase">Include Uppercase
-                                <span class="remark" data-toggle="tooltip" data-placement="top" title="A-Z">?</span>
+                                <span class="remark" data-toggle="tooltip" data-placement="top" 
+                                title="A-Z">?</span>
                             </label>
                         </li>
                         <li>
                             <input type="checkbox" id="includeLowercase" class="checkboxResize" checked>
                             <label for="includeLowercase">Include Lowercase
-                                <span class="remark" data-toggle="tooltip" data-placement="top" title="a-z">?</span>
+                                <span class="remark" data-toggle="tooltip" data-placement="top" 
+                                title="a-z">?</span>
                             </label>
                         </li>
                         <li>
-                            <input type="checkbox" id="avoidCharRepeat" class="checkboxResize">
+                            <input type="checkbox" id="avoidCharRepeat" class="checkboxResize" checked>
                             <label for="avoidCharRepeat">Avoid Repetition</label>
                         </li>
                         <li>
@@ -94,7 +106,12 @@ Last Author: K1llf0rce
             <div class="mainContainer">
                 <h1 class="contentHeading">Passphrase Generator </h1>
                 <div class="infoBox">
-                    <p>This generator will replace some characters of your phrase, making it harder to decrypt, but easier to remember than a random cryptic password.</p>
+                    <p>
+                        This generator will replace some characters of your phrase, making it harder 
+                        to decrypt, but easier to remember than a random cryptic password.
+                        Although these are quite easy to crack nowadays, 
+                        so try to make the phrase as long as possible.
+                    </p>
                 </div>
                 <div class="inputBox">
                     <input type="text" placeholder="Input Phrase..." id="passPhrase">
@@ -110,7 +127,7 @@ Last Author: K1llf0rce
         </div>
         <script src="simplepassgen/js/main.js"></script>
         <footer class="footer-custom">
-            <p>simple-passgen v2.2.1</p>
+            <p>simple-passgen v2.2.2</p>
         </footer>
     </body>
 </html>
