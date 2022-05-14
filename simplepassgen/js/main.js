@@ -168,11 +168,11 @@ function generatePassphrase(phrase) {
 function copyToClipboard(val) {
     // use new method to copy
     navigator.clipboard.writeText(val).then(function() {
-        console.log('Async: Copying to clipboard was successful!');
+        console.log('Copying to clipboard was successful!');
     }, function() {
         // if new method somehow fails try depreciated method
         // method consists of creating a dummy input element and copying from it
-        console.error('Async: Could not copy text, using fallback method');
+        console.error('Copying failed, using fallback method');
         let dummy = document.createElement("input");
         document.body.appendChild(dummy);
         dummy.setAttribute("id", "dummy_id");
@@ -215,15 +215,6 @@ buttonPassphraseGenerate.onclick = function() {
 hidePassword.onchange = function() {
     if (hidePassword.checked == true) {
         mainPassOut.innerHTML = hidePass(cryptGenOut);
-    } else {
-        mainPassOut.innerHTML = cryptGenOut;
-    }
-}
-
-// if user toggles repetition avoidance, re-eval current password
-avoidCharRepeat.onchange = function() {
-    if (avoidCharRepeat.checked == true) {
-        mainPassOut.innerHTML = correctRepeat(cryptGenOut);
     } else {
         mainPassOut.innerHTML = cryptGenOut;
     }

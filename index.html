@@ -53,45 +53,46 @@ Last Author: K1llf0rce
                             <input id="passLength" type="range" min="4" max="128" value="24">
                         </li>
                         <li>
-                            <input type="checkbox" id="includeSpecial" class="checkboxResize" checked>
-                            <label for="includeSpecial">Include Special 
-                                <span class="remark" data-toggle="tooltip" data-placement="top" 
-                                title="!?$%&@#[](){}+-:,~_./^*">?</span>
-                            </label><br>
-                            <input type="checkbox" id="includeExtSpecial" class="checkboxResize" checked>
-                            <label for="includeExtSpecial">Extended Special
+                            <div class="optListItem">
+                                <input type="checkbox" id="includeSpecial" class="checkboxResize" checked>
+                                <label for="includeSpecial">Include Special</label>
+                                <br>
+                                <input type="checkbox" id="includeExtSpecial" class="checkboxResize" checked>
+                                <label for="includeExtSpecial">
                                 <span class="remark" data-toggle="tooltip" data-placement="top"
-                                title="Use full Special Character Charset">?</span>
-                            </label>
+                                title="Use full Special Character Charset">Extended Special</span>
+                                </label>
+                            </div>
                         </li>
                         <li>
-                            <input type="checkbox" id="includeNumbers" class="checkboxResize" checked>
-                            <label for="includeNumbers">Include Numbers 
-                                <span class="remark" data-toggle="tooltip" data-placement="top" 
-                                title="0-9">?</span>
-                            </label>
+                            <div class="optListItem">
+                                <input type="checkbox" id="includeNumbers" class="checkboxResize" checked>
+                                <label for="includeNumbers">Include Numbers</label>
+                            </div>
                         </li>
                         <li>
-                            <input type="checkbox" id="includeUppercase" class="checkboxResize" checked>
-                            <label for="includeUppercase">Include Uppercase
-                                <span class="remark" data-toggle="tooltip" data-placement="top" 
-                                title="A-Z">?</span>
-                            </label>
+                            <div class="optListItem">
+                                <input type="checkbox" id="includeUppercase" class="checkboxResize" checked>
+                                <label for="includeUppercase">Include Uppercase</label>
+                            </div>
                         </li>
                         <li>
-                            <input type="checkbox" id="includeLowercase" class="checkboxResize" checked>
-                            <label for="includeLowercase">Include Lowercase
-                                <span class="remark" data-toggle="tooltip" data-placement="top" 
-                                title="a-z">?</span>
-                            </label>
+                            <div class="optListItem">
+                                <input type="checkbox" id="includeLowercase" class="checkboxResize" checked>
+                                <label for="includeLowercase">Include Lowercase</label>
+                            </div>
                         </li>
                         <li>
-                            <input type="checkbox" id="avoidCharRepeat" class="checkboxResize" checked>
-                            <label for="avoidCharRepeat">Avoid Repetition</label>
+                            <div class="optListItem">
+                                <input type="checkbox" id="avoidCharRepeat" class="checkboxResize" checked>
+                                <label for="avoidCharRepeat">Avoid Repetition</label>
+                            </div>
                         </li>
                         <li>
-                            <input type="checkbox" id="hidePassword" class="checkboxResize" checked>
-                            <label for="hidePassword">Hide Password</label>
+                            <div class="optListItem">
+                                <input type="checkbox" id="hidePassword" class="checkboxResize" checked>
+                                <label for="hidePassword">Hide Password</label>
+                            </div>
                         </li>
                     </ul>  
                 </div>
@@ -107,8 +108,9 @@ Last Author: K1llf0rce
                 <h1 class="contentHeading">Passphrase Generator </h1>
                 <div class="infoBox">
                     <p>
-                        This generator will replace some characters of your phrase, making it harder 
+                        Replaces some characters of the phrase, making it harder 
                         to decrypt, but easier to remember than a random cryptic password.
+                        <br>
                         Although these are quite easy to crack nowadays, 
                         so try to make the phrase as long as possible.
                     </p>
@@ -127,7 +129,7 @@ Last Author: K1llf0rce
         </div>
         <script src="simplepassgen/js/main.js"></script>
         <footer class="footer-custom">
-            <p>simple-passgen v2.2.2</p>
+            <p>simple-passgen v2.2.3</p>
         </footer>
     </body>
 </html>
