@@ -40,7 +40,7 @@ const passLengthOut = document.getElementById('passLengthDisplay');
 // charsets
 
 const charSetNum='1234567890';
-const charSetSpecBsc='!?$%&#[](){}';
+const charSetSpecBsc='!?$%#[](){}+-';
 const charSetSpecExt='!?$%&@#[](){}+-:,~_./^*';
 const charSetUpper='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const charSetLower='abcdefghijklmnopqrstuvwxyz';
