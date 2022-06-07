@@ -23,7 +23,6 @@ const passPhrase = document.getElementById('passPhrase');
 
 // buttons
 
-const buttonPihole = document.getElementById('buttonPihole');
 const buttonGenerate = document.getElementById('buttonGenerate');
 const buttonPassphraseGenerate = document.getElementById('buttonPassphraseGenerate');
 const buttonCopy = document.getElementById('copyButton');
@@ -40,7 +39,7 @@ const passLengthOut = document.getElementById('passLengthDisplay');
 // charsets
 
 const charSetNum='1234567890';
-const charSetSpecBsc='!?$%#[](){}+-';
+const charSetSpecBsc='!?$%&@#()';
 const charSetSpecExt='!?$%&@#[](){}+-:,~_./^*';
 const charSetUpper='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const charSetLower='abcdefghijklmnopqrstuvwxyz';
@@ -223,6 +222,5 @@ hidePassword.onchange = function() {
 // these are just some buttons that do basic things
 buttonCopy.onclick = function() { copyToClipboard(cryptGenOut); }
 buttonPassphraseCopy.onclick = function() { copyToClipboard(phraseGenOut) }
-buttonPihole.onclick = function() { location.href='/admin/'; }
 passLength.oninput = function() { passLengthOut.innerHTML = passLength.value; }
 window.onload = function() { passLengthOut.innerHTML = passLength.value; }
