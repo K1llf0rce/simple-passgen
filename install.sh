@@ -22,7 +22,7 @@ fi
 # do our stuff
 rm /var/www/index*.html
 cp index.html /var/www/
-cp -r simplepassgen/ /var/www/
+cp -r src/ /var/www/
 
 # and exit
 echo "simple-passgen was successfully installed!"

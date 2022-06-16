@@ -142,8 +142,8 @@ p,a,h1,h2,h3,label {
 
 #secOut {
     display: none;
-    word-wrap: break-word;
     font-size:20px;
+    width: 50%;
 }
 
 #copyButton {

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-#check if run as root
-if [ "$EUID" -ne 0 ]; then
-  echo "Please run it as root!"
+# check if run as root
+if [ "$EUID" -ne 0 ]; then 
+  echo "Please run as root!"
   exit
 fi
 
@@ -24,9 +24,9 @@ git pull
 
 # do the other stuff
 rm /var/www/index.html
-rm -rf /var/www/simplepassgen/
+rm -rf /var/www/src/
 cp index.html /var/www/
-cp -r simplepassgen/ /var/www/
+cp -r src/ /var/www/
 
 #exit
 echo "simple-passgen was successfully updated!"

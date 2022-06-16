@@ -1,9 +1,5 @@
-/*
-Project: simple-passgen
-Last Author: K1llf0rce
-*/
-
 // exec in strict mode
+
 'use strict'
 
 // checkboxes
@@ -39,7 +35,7 @@ const passLengthOut = document.getElementById('passLengthDisplay');
 // charsets
 
 const charSetNum='1234567890';
-const charSetSpecBsc='!?$%&@#()';
+const charSetSpecBsc='!?$%&@#';
 const charSetSpecExt='!?$%&@#[](){}+-:,~_./^*';
 const charSetUpper='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const charSetLower='abcdefghijklmnopqrstuvwxyz';
@@ -58,25 +54,25 @@ function randomFromCharset(charset) {
     */
     switch (charset) {
         case 'num':
-            var rndmNum = Math.ceil(charSetNum.length * Math.random());
+            var rndmNum = Math.ceil((charSetNum.length-1) * Math.random());
             return charSetNum.charAt(rndmNum)
         case 'spec':
             var rndmSpec
             if (includeExtSpecial.checked) {
-                rndmSpec = Math.ceil(charSetSpecExt.length * Math.random());
+                rndmSpec = Math.ceil((charSetSpecExt.length-1) * Math.random());
                 return charSetSpecExt.charAt(rndmSpec);
             } else {
-                rndmSpec = Math.ceil(charSetSpecBsc.length * Math.random());
+                rndmSpec = Math.ceil((charSetSpecBsc.length-1) * Math.random());
                 return charSetSpecBsc.charAt(rndmSpec);
             }
         case 'specPhr':
-            var rndmSpecPhr = Math.ceil(charSetSpecBsc.length * Math.random());
+            var rndmSpecPhr = Math.ceil((charSetSpecBsc.length-1) * Math.random());
             return charSetSpecBsc.charAt(rndmSpecPhr);
         case 'up':
-            var rndmUpper = Math.ceil(charSetUpper.length * Math.random());
+            var rndmUpper = Math.ceil((charSetUpper.length-1) * Math.random());
             return charSetUpper.charAt(rndmUpper);
         case 'low':
-            var rndmLower = Math.ceil(charSetLower.length * Math.random());
+            var rndmLower = Math.ceil((charSetLower.length-1) * Math.random());
             return charSetLower.charAt(rndmLower);
     }
 }
@@ -87,7 +83,7 @@ function correctRepeat(string) {
         index. If this is the case we generate a new random char from the corresponding
         charset and check again, just to be sure. 
     */
-    let i=1;
+    let i=0;
     while (i < string.length) {
         if ( string[i] == string[i-1] ) {
             if (charSetNum.includes(string[i])) {
@@ -111,25 +107,30 @@ function correctRepeat(string) {
 
 function generateCrypticPass()  {
     let password = "";
-    if (includeNumbers.checked == true ||
+    let ctr=0;
+    if (
+        includeNumbers.checked == true ||
         includeSpecial.checked == true ||
         includeUpper.checked == true ||
-        includeLower.checked == true) {
-        while (password.length<passLength.value) {
+        includeLower.checked == true
+        ) {
+        while (ctr < passLength.value) {
             // assemble password
-            if (password.length<passLength.value) {
-                if (includeNumbers.checked) {
-                    password += randomFromCharset('num');
-                }
-                if (includeSpecial.checked) {
-                    password += randomFromCharset('spec');
-                }
-                if (includeUpper.checked) {
-                    password += randomFromCharset('up');
-                }
-                if (includeLower.checked) {
-                    password += randomFromCharset('low');
-                }
+            if (includeNumbers.checked) {
+                password += randomFromCharset('num');
+                ctr++;
+            }
+            if (includeSpecial.checked && ctr < passLength.value) {
+                password += randomFromCharset('spec');
+                ctr++;
+            }
+            if (includeUpper.checked && ctr < passLength.value) {
+                password += randomFromCharset('up');
+                ctr++;
+            }
+            if (includeLower.checked && ctr < passLength.value) {
+                password += randomFromCharset('low');
+                ctr++;
             }
         }
         password = password.split('').sort( function() {
