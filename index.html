@@ -42,10 +42,7 @@
                                 <label for="includeSpecial">Include Special</label>
                                 <br>
                                 <input type="checkbox" id="includeExtSpecial" class="checkboxResize">
-                                <label for="includeExtSpecial">
-                                <span class="remark" data-toggle="tooltip" data-placement="top"
-                                title="Use full Special Character Charset">Extended Special</span>
-                                </label>
+                                <label for="includeExtSpecial">Extended Special</label>
                             </div>
                         </li>
                         <li>
@@ -68,14 +65,8 @@
                         </li>
                         <li>
                             <div class="optListItem">
-                                <input type="checkbox" id="avoidCharRepeat" class="checkboxResize">
+                                <input type="checkbox" id="avoidCharRepeat" class="checkboxResize" checked>
                                 <label for="avoidCharRepeat">Avoid Repetition</label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="optListItem">
-                                <input type="checkbox" id="hidePassword" class="checkboxResize" checked>
-                                <label for="hidePassword">Hide Password</label>
                             </div>
                         </li>
                     </ul>  
@@ -86,17 +77,14 @@
                 <div class="buttonBox">
                     <button id="buttonGenerate" class="btn btn-dark">Generate</button>
                     <button id="copyButton" class="btn btn-dark">Copy</button>
+                    <button id="showPassButton" class="btn btn-dark">Show</button>
                 </div>
             </div>
             <div class="mainContainer">
                 <h1 class="contentHeading">Passphrase Generator </h1>
                 <div class="infoBox">
                     <p>
-                        Replaces some characters of the phrase, making it a bit harder 
-                        to decrypt and easier to remember than a random cryptic password.
-                        <br>
-                        Although these are quite easy to crack nowadays, 
-                        so try to make the phrase as long as possible.
+                        Same goes for Passphrases: The longer, the better.
                     </p>
                 </div>
                 <div class="inputBox">
@@ -113,7 +101,7 @@
         </div>
         <script src="src/js/main.js"></script>
         <footer class="footer-custom">
-            <p>simple-passgen v2.4.0</p>
+            <p>simple-passgen v2.5.0</p>
         </footer>
     </body>
 </html>

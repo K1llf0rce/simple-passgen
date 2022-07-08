@@ -9,7 +9,6 @@ const includeExtSpecial = document.getElementById('includeExtSpecial');
 const includeUpper = document.getElementById('includeUppercase');
 const includeLower = document.getElementById('includeLowercase');
 const includeNumbers = document.getElementById('includeNumbers');
-const hidePassword = document.getElementById('hidePassword');
 const avoidCharRepeat = document.getElementById('avoidCharRepeat');
 
 // numerical inputs
@@ -22,6 +21,7 @@ const passPhrase = document.getElementById('passPhrase');
 const buttonGenerate = document.getElementById('buttonGenerate');
 const buttonPassphraseGenerate = document.getElementById('buttonPassphraseGenerate');
 const buttonCopy = document.getElementById('copyButton');
+const buttonShow = document.getElementById('showPassButton');
 const buttonPassphraseCopy = document.getElementById('copyPhraseButton');
 
 // outputs
@@ -44,6 +44,7 @@ const charSetLower='abcdefghijklmnopqrstuvwxyz';
 
 let cryptGenOut;
 let phraseGenOut;
+let hidePassword = true;
 
 // functions
 
@@ -141,16 +142,13 @@ function generateCrypticPass()  {
         if (avoidCharRepeat.checked) {
             password = correctRepeat(password);
         }
-        buttonCopy.style.display = 'unset';
         return password;
     } else {
-        buttonCopy.style.display = 'none';
-        return "Tick at least one option!"
+        return false
     }
 }
 
 function generatePassphrase(phrase) {
-    buttonPassphraseCopy.style.display = 'unset';
     // get the value
     let userPhrase = phrase.value;
     // replace spaces with random number between 1-99 and replace normal chars with special chars
@@ -190,13 +188,22 @@ function hidePass(string) { return string.replace(/./g, '*').substring(0,12); }
 // password generation button
 buttonGenerate.onclick = function() {
     cryptGenOut = generateCrypticPass();
-    if (hidePassword.checked == true) {
+    mainOut.style.display = 'block';
+    // do not continue if user did not check anything
+    if (!cryptGenOut) {
+        buttonCopy.style.display = 'none';
+        buttonShow.style.display = 'none';
+        mainPassOut.innerHTML = "Tick at least one Include-Option!";
+        return
+    }
+    buttonCopy.style.display = 'unset';
+    buttonShow.style.display = 'unset';
+    if (hidePassword && cryptGenOut) {
         // if we hide password, replace all chars in string with '*'
         mainPassOut.innerHTML = hidePass(cryptGenOut);
     } else {
         mainPassOut.innerHTML = cryptGenOut;
     }
-    mainOut.style.display = 'block';
 }
 
 // passphrase generation button
@@ -204,6 +211,7 @@ buttonPassphraseGenerate.onclick = function() {
     if (passPhrase.value.length > 0) {
         phraseGenOut = generatePassphrase(passPhrase)
         mainPassphraseOut.innerHTML = phraseGenOut;
+        buttonPassphraseCopy.style.display = 'unset';
     } else {
         buttonPassphraseCopy.style.display = 'none';
         mainPassphraseOut.innerHTML = 'Provide an Input!';
@@ -212,11 +220,15 @@ buttonPassphraseGenerate.onclick = function() {
 }
 
 // hide password by default, or if user wants
-hidePassword.onchange = function() {
-    if (hidePassword.checked == true) {
-        mainPassOut.innerHTML = hidePass(cryptGenOut);
-    } else {
+buttonShow.onclick = function() {
+    if (hidePassword) {
+        hidePassword = false;
         mainPassOut.innerHTML = cryptGenOut;
+        buttonShow.innerHTML = 'Hide';
+    } else {
+        hidePassword = true;
+        mainPassOut.innerHTML = hidePass(cryptGenOut);
+        buttonShow.innerHTML = 'Show';
     }
 }
 
